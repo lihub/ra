@@ -47,10 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const data = await response.json();
+            console.log('Portfolio data received:', data);
             displayPortfolioResults(data);
             
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error details:', error);
+            console.error('Error stack:', error.stack);
             alert('Error calculating portfolio. Please try again.');
         } finally {
             // Reset button
@@ -61,12 +63,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function displayPortfolioResults(data) {
         // Update summary stats
-        document.getElementById('expected-return').textContent = data.expected_return + '%';
-        document.getElementById('volatility').textContent = data.volatility + '%';
-        document.getElementById('sharpe-ratio').textContent = (data.expected_return / data.volatility).toFixed(2);
+        document.getElementById('expected-return').textContent = data.expected_return.toFixed(1) + '%';
+        document.getElementById('volatility').textContent = data.volatility.toFixed(1) + '%';
+        document.getElementById('sharpe-ratio').textContent = data.sharpe_ratio.toFixed(2);
         
-        // Create portfolio chart
+        // Create portfolio allocation chart
         createPortfolioChart(data.portfolio);
+        
+        // Create performance chart
+        if (data.performance_history && data.performance_history.timeseries) {
+            createPerformanceChart(data.performance_history, data.investment_amount);
+        }
         
         // Create portfolio details table
         createPortfolioDetails(data.portfolio, data.investment_amount);
@@ -80,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('portfolioChart').getContext('2d');
         
         // Destroy existing chart if it exists
-        if (window.portfolioChart) {
+        if (window.portfolioChart && typeof window.portfolioChart.destroy === 'function') {
             window.portfolioChart.destroy();
         }
         
@@ -125,6 +132,145 @@ document.addEventListener('DOMContentLoaded', function() {
                         callbacks: {
                             label: function(context) {
                                 return context.label + ': ' + context.parsed.toFixed(1) + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    function createPerformanceChart(performanceData, investmentAmount) {
+        // Create performance chart container if it doesn't exist
+        let perfChartContainer = document.getElementById('performance-chart-container');
+        if (!perfChartContainer) {
+            perfChartContainer = document.createElement('div');
+            perfChartContainer.id = 'performance-chart-container';
+            perfChartContainer.innerHTML = `
+                <h3>Historical Performance</h3>
+                <div style="position: relative; height: 400px; margin: 2rem 0;">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                <div class="performance-stats">
+                    <div class="stat">
+                        <h4>Total Return</h4>
+                        <span id="total-return">${performanceData.summary.total_return_percent.toFixed(1)}%</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Max Drawdown</h4>
+                        <span id="max-drawdown">${performanceData.summary.max_drawdown_percent.toFixed(1)}%</span>
+                    </div>
+                    <div class="stat">
+                        <h4>Final Value</h4>
+                        <span id="final-value">$${performanceData.summary.final_value.toLocaleString()}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Insert after portfolio chart
+            const portfolioChartDiv = document.querySelector('.portfolio-chart');
+            portfolioChartDiv.parentNode.insertBefore(perfChartContainer, portfolioChartDiv.nextSibling);
+        }
+        
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        
+        // Destroy existing chart if it exists
+        if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
+            window.performanceChart.destroy();
+        }
+        
+        // Scale the performance data to the actual investment amount
+        const scaleFactor = investmentAmount / performanceData.summary.initial_value;
+        const scaledData = performanceData.timeseries.map(point => ({
+            x: point.date,
+            y: point.value * scaleFactor
+        }));
+        
+        // Add baseline (initial investment)
+        const baselineData = performanceData.timeseries.map(point => ({
+            x: point.date,
+            y: investmentAmount
+        }));
+        
+        window.performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Portfolio Value',
+                    data: scaledData,
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.1
+                }, {
+                    label: 'Initial Investment',
+                    data: baselineData,
+                    borderColor: '#64748b',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    fill: false,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ffffff',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 26, 30, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#8b5cf6',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                const pnl = value - investmentAmount;
+                                const pnlPercent = (pnl / investmentAmount * 100).toFixed(1);
+                                return `${context.dataset.label}: $${value.toLocaleString()} (${pnlPercent > 0 ? '+' : ''}${pnlPercent}%)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MMM yyyy'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#a1a1aa'
+                        }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#a1a1aa',
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
                             }
                         }
                     }
@@ -196,6 +342,49 @@ style.textContent = `
     .asset-amount {
         text-align: right;
         font-weight: 500;
+        color: var(--text-primary);
+    }
+    
+    #performance-chart-container {
+        background: var(--surface-elevated);
+        padding: 2rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-color);
+        margin: 2rem 0;
+    }
+    
+    #performance-chart-container h3 {
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+    
+    .performance-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .performance-stats .stat {
+        text-align: center;
+        padding: 1rem;
+        background: var(--surface-color);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+    }
+    
+    .performance-stats .stat h4 {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .performance-stats .stat span {
+        font-size: 1.5rem;
+        font-weight: 700;
         color: var(--text-primary);
     }
 `;

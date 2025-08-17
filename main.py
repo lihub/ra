@@ -25,19 +25,38 @@ async def calculate_portfolio(
     risk_level: int = Form(...),
     investment_amount: float = Form(...)
 ):
-    # TODO: Implement portfolio optimization logic
-    return {
-        "risk_level": risk_level,
-        "investment_amount": investment_amount,
-        "portfolio": {
-            "US_Stocks": 0.6,
-            "International_Stocks": 0.2,
-            "Bonds": 0.15,
-            "Commodities": 0.05
-        },
-        "expected_return": 7.2,
-        "volatility": 12.5
-    }
+    from portfolio.optimizer import PortfolioOptimizer
+    import traceback
+    
+    try:
+        print(f"Starting optimization for risk level {risk_level}, amount ${investment_amount}")
+        
+        optimizer = PortfolioOptimizer()
+        result = optimizer.optimize_portfolio(risk_level=risk_level)
+        
+        print(f"Optimization completed successfully: {result['optimization_success']}")
+        
+        # Convert allocation percentages to dollar amounts
+        portfolio_dollars = {}
+        for asset, weight in result['allocation'].items():
+            portfolio_dollars[asset] = round(investment_amount * weight, 2)
+        
+        return {
+            "risk_level": risk_level,
+            "investment_amount": investment_amount,
+            "portfolio": result['allocation'],
+            "portfolio_dollars": portfolio_dollars,
+            "expected_return": result['expected_return'] * 100,  # Convert to percentage
+            "volatility": result['volatility'] * 100,  # Convert to percentage
+            "sharpe_ratio": result['sharpe_ratio'],
+            "optimization_success": result['optimization_success'],
+            "performance_history": result['performance_history']
+        }
+        
+    except Exception as e:
+        print(f"ERROR in portfolio calculation: {e}")
+        print(f"Traceback: {traceback.format_exc()}")
+        raise e  # Re-raise to see the full error
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
