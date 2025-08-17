@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Risk Assessment - Roboadvisor{% endblock %}
+
+{% block content %}
+<div class="assessment-container">
+    <div class="assessment-header">
+        <h1>Portfolio Risk Assessment</h1>
+        <p>Help us understand your investment goals and risk tolerance</p>
+    </div>
+
+    <form id="risk-form" class="risk-form">
+        <div class="form-section">
+            <h3>Investment Amount</h3>
+            <div class="input-group">
+                <label for="investment_amount">How much would you like to invest?</label>
+                <input type="number" id="investment_amount" name="investment_amount" 
+                       min="1000" step="1000" value="10000" required>
+                <span class="currency">USD</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Risk Tolerance</h3>
+            <div class="risk-slider-container">
+                <label for="risk_level">Select your risk level:</label>
+                <input type="range" id="risk_level" name="risk_level" 
+                       min="1" max="10" value="5" class="risk-slider">
+                <div class="risk-labels">
+                    <span>Conservative (1)</span>
+                    <span>Moderate (5)</span>
+                    <span>Aggressive (10)</span>
+                </div>
+                <div class="risk-description" id="risk-description">
+                    Moderate risk tolerance - Balanced approach between growth and stability
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Investment Timeline</h3>
+            <div class="timeline-options">
+                <label class="radio-option">
+                    <input type="radio" name="timeline" value="short" checked>
+                    <span>1-3 years (Short-term)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="timeline" value="medium">
+                    <span>3-10 years (Medium-term)</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="timeline" value="long">
+                    <span>10+ years (Long-term)</span>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-button">
+            Generate My Portfolio
+        </button>
+    </form>
+
+    <div id="portfolio-results" class="portfolio-results hidden">
+        <h2>Your Optimized Portfolio</h2>
+        <div class="portfolio-summary">
+            <div class="summary-stats">
+                <div class="stat">
+                    <h4>Expected Annual Return</h4>
+                    <span id="expected-return">-</span>
+                </div>
+                <div class="stat">
+                    <h4>Portfolio Volatility</h4>
+                    <span id="volatility">-</span>
+                </div>
+                <div class="stat">
+                    <h4>Sharpe Ratio</h4>
+                    <span id="sharpe-ratio">-</span>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-chart">
+            <canvas id="portfolioChart"></canvas>
+        </div>
+        <div class="portfolio-details" id="portfolio-details">
+            <!-- Portfolio allocation details will be populated here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/risk-assessment.js"></script>
+{% endblock %}
