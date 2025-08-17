@@ -8,26 +8,29 @@
     padding: 0;
 }
 
-/* CSS Variables */
+/* CSS Variables - Dark Theme */
 :root {
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-light: #a5b4fc;
+    --primary-color: #8b5cf6;
+    --primary-dark: #7c3aed;
+    --primary-light: #a78bfa;
     --secondary-color: #06d6a0;
     --accent-color: #f59e0b;
-    --background-color: #fafbfc;
-    --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --surface-color: #ffffff;
-    --surface-elevated: #f8fafc;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    --border-color: #e2e8f0;
-    --border-light: #f1f5f9;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+    --background-color: #0a0a0b;
+    --background-secondary: #111113;
+    --background-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    --surface-color: #1a1a1e;
+    --surface-elevated: #212126;
+    --surface-glass: rgba(26, 26, 30, 0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --border-color: #27272a;
+    --border-light: #3f3f46;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -2px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 10px 10px -5px rgb(0 0 0 / 0.5);
+    --shadow-purple: 0 10px 30px rgba(139, 92, 246, 0.3);
     --border-radius: 12px;
     --border-radius-lg: 16px;
     --font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
@@ -47,9 +50,10 @@ body {
 
 /* Navigation */
 .navbar {
-    background: var(--surface-color);
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -98,10 +102,14 @@ body {
 .hero {
     background: var(--background-gradient);
     color: white;
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero::before {
@@ -111,8 +119,29 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(167, 139, 250, 0.2) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" patternUnits="userSpaceOnUse" width="10" height="10"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+    animation: shimmer 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
 }
 
 .hero-content {
@@ -123,14 +152,15 @@ body {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #8b5cf6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
 }
 
 .hero-subtitle {
@@ -198,7 +228,20 @@ body {
 
 /* Features Section */
 .features {
-    padding: 4rem 2rem;
+    padding: 6rem 2rem;
+    background: var(--background-secondary);
+    position: relative;
+}
+
+.features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="rgba(139,92,246,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    pointer-events: none;
 }
 
 .container {
@@ -220,15 +263,16 @@ body {
 }
 
 .feature {
-    background: var(--surface-color);
+    background: var(--surface-elevated);
     padding: 2.5rem;
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     text-align: center;
     transition: var(--transition);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 .feature::before {
@@ -237,8 +281,8 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
     transform: scaleX(0);
     transition: transform 0.3s;
 }
@@ -249,8 +293,9 @@ body {
 
 .feature:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--primary-light);
+    box-shadow: var(--shadow-purple);
+    border-color: var(--primary-color);
+    background: var(--surface-color);
 }
 
 .feature h3 {
@@ -263,7 +308,9 @@ body {
 .assessment-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 4rem 2rem;
+    background: var(--background-color);
+    min-height: 100vh;
 }
 
 .assessment-header {
@@ -278,12 +325,25 @@ body {
 }
 
 .risk-form {
-    background: var(--surface-color);
+    background: var(--surface-elevated);
     padding: 3rem;
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-light);
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(20px);
+    position: relative;
+}
+
+.risk-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    border-radius: var(--border-radius-lg);
+    pointer-events: none;
 }
 
 .form-section {
@@ -321,6 +381,15 @@ body {
     border-radius: var(--border-radius);
     font-size: 1rem;
     padding-right: 3rem;
+    background: var(--surface-color);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 .currency {
@@ -338,20 +407,28 @@ body {
 
 .risk-slider {
     width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--border-color);
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--border-color) 0%, var(--primary-color) 100%);
     outline: none;
     margin: 1rem 0;
+    position: relative;
 }
 
 .risk-slider::-webkit-slider-thumb {
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    transition: var(--transition);
+}
+
+.risk-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
 }
 
 .risk-labels {
@@ -363,11 +440,13 @@ body {
 }
 
 .risk-description {
-    padding: 1rem;
-    background: var(--background-color);
+    padding: 1.5rem;
+    background: var(--surface-color);
     border-radius: var(--border-radius);
     font-weight: 500;
     color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Timeline Options */
@@ -380,16 +459,18 @@ body {
 .radio-option {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 1.25rem;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: border-color 0.2s, background-color 0.2s;
+    transition: var(--transition);
+    background: var(--surface-color);
 }
 
 .radio-option:hover {
     border-color: var(--primary-color);
-    background-color: var(--background-color);
+    background-color: var(--surface-elevated);
+    box-shadow: var(--shadow-md);
 }
 
 .radio-option input[type="radio"] {
