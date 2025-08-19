@@ -7,7 +7,12 @@ Building a lean web application for portfolio optimization based on risk toleran
 - Start with core functionality and expand to full roboadvisor features
 
 ## Available ETF Data
-The `/data` folder contains historical data for various ETFs and indices:
+The `/raw_data` folder contains historical data for various ETFs and indices:
+
+**CRITICAL: NEVER MODIFY RAW DATA FILES**
+- Raw data files in `/raw_data` must NEVER be edited or modified
+- Always process raw data and save results to `/processed_data` folder
+- Raw data serves as the source of truth and must remain unchanged
 
 ### US Market ETFs
 - **S&P 500 TR** - S&P 500 Total Return index
