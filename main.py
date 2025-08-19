@@ -14,7 +14,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return HTMLResponse("<h1>Railway Test - App is Working!</h1>")
 
 @app.get("/risk-assessment", response_class=HTMLResponse)
 async def risk_assessment(request: Request):
