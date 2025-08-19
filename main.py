@@ -25,12 +25,12 @@ async def calculate_portfolio(
     risk_level: int = Form(...),
     investment_amount: float = Form(...)
 ):
-    from portfolio.optimizer import PortfolioOptimizer
     import traceback
     
     try:
         print(f"Starting optimization for risk level {risk_level}, amount ${investment_amount}")
         
+        from portfolio.optimizer import PortfolioOptimizer
         optimizer = PortfolioOptimizer()
         result = optimizer.optimize_portfolio(risk_level=risk_level)
         
