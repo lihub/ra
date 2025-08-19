@@ -12,6 +12,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Templates
 templates = Jinja2Templates(directory="templates")
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return HTMLResponse("<h1>Railway Test - App is Working!</h1>")
