@@ -18,7 +18,7 @@ async def health():
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return HTMLResponse("<h1>Railway Test - App is Working!</h1>")
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/risk-assessment", response_class=HTMLResponse)
 async def risk_assessment(request: Request):
