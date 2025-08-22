@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const submitButton = this.querySelector('.submit-button');
         
         // Show loading state
-        submitButton.textContent = 'Calculating Portfolio...';
+        submitButton.textContent = 'Creating Your Quantica Portfolio...';
         submitButton.disabled = true;
         
         try {
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Error calculating portfolio. Please try again.');
         } finally {
             // Reset button
-            submitButton.textContent = 'Generate My Portfolio';
+            submitButton.textContent = 'Create My Quantica Portfolio';
             submitButton.disabled = false;
         }
     });

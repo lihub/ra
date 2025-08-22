@@ -1,0 +1,1101 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions - Quantica{% endblock %}
+
+{% block content %}
+<div class="faq-container">
+    <div class="faq-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p class="lead">Get answers to common questions about Quantica's intelligent portfolio optimization</p>
+        </div>
+    </div>
+
+    <div class="container faq-content">
+        
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="getting-started">Getting Started</button>
+            <button class="category-btn" data-category="investment-process">Investment Process</button>
+            <button class="category-btn" data-category="fees-costs">Fees & Costs</button>
+            <button class="category-btn" data-category="performance">Performance</button>
+            <button class="category-btn" data-category="security">Security & Safety</button>
+            <button class="category-btn" data-category="technical">Technical</button>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="faq-category active" id="getting-started">
+            <h2>🚀 Getting Started</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is Quantica and how does it work?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Quantica is an intelligent portfolio optimization platform that uses Modern Portfolio Theory and advanced algorithms to create personalized investment portfolios. Here's how it works:</p>
+                    <ol>
+                        <li><strong>Risk Assessment:</strong> You complete a comprehensive questionnaire about your risk tolerance, investment timeline, and goals</li>
+                        <li><strong>Optimization:</strong> Our algorithms analyze 25+ ETFs and create your optimal portfolio allocation</li>
+                        <li><strong>Implementation:</strong> We automatically invest your funds according to the optimized allocation</li>
+                        <li><strong>Management:</strong> We monitor and rebalance your portfolio to maintain optimal allocations</li>
+                    </ol>
+                    <p>Everything is automated, transparent, and based on Nobel Prize-winning investment theory.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What's the minimum amount needed to start investing?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The minimum investment amount is <strong>$1,000</strong>. This allows for proper diversification across multiple asset classes while keeping costs reasonable.</p>
+                    <p>Why $1,000? With smaller amounts, transaction costs and fractional share limitations make it difficult to achieve optimal diversification. Our minimum ensures you get the full benefit of our optimization algorithms.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How long does it take to set up my portfolio?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Account setup:</strong> 5-10 minutes to complete the risk assessment and provide basic information.</p>
+                    <p><strong>Portfolio creation:</strong> Immediate - our algorithms generate your optimal allocation instantly.</p>
+                    <p><strong>Fund deployment:</strong> 1-3 business days after your initial deposit clears.</p>
+                    <p>You'll receive email notifications at each step and can track progress in your dashboard.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I change my risk level after starting?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Yes, absolutely.</strong> Life circumstances change, and your portfolio should adapt. You can:</p>
+                    <ul>
+                        <li>Retake the risk assessment anytime</li>
+                        <li>Adjust your risk level manually</li>
+                        <li>Update your investment timeline</li>
+                        <li>Modify your goals</li>
+                    </ul>
+                    <p>Changes trigger automatic portfolio reoptimization and rebalancing within 1-2 business days.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What types of accounts do you support?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We support most common account types:</p>
+                    <ul>
+                        <li><strong>Taxable Accounts:</strong> Individual and joint brokerage accounts</li>
+                        <li><strong>Tax-Advantaged:</strong> Traditional and Roth IRAs</li>
+                        <li><strong>Retirement Plans:</strong> 401(k) rollovers and SEP-IRAs</li>
+                        <li><strong>Trust Accounts:</strong> Revocable and irrevocable trusts</li>
+                        <li><strong>Corporate:</strong> Business investment accounts</li>
+                    </ul>
+                    <p>Each account type receives customized tax optimization strategies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Process -->
+        <div class="faq-category" id="investment-process">
+            <h2>📊 Investment Process</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What investments does Quantica use in portfolios?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We use a carefully curated universe of <strong>25+ low-cost ETFs</strong> spanning multiple asset classes:</p>
+                    
+                    <div class="investment-categories">
+                        <div class="investment-category">
+                            <h4>🏢 Equity Assets</h4>
+                            <ul>
+                                <li>US Large Cap (S&P 500)</li>
+                                <li>US Small Cap (Russell 2000)</li>
+                                <li>International Developed Markets</li>
+                                <li>Emerging Markets</li>
+                                <li>Sector-specific ETFs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="investment-category">
+                            <h4>🏛️ Fixed Income</h4>
+                            <ul>
+                                <li>US Government Bonds</li>
+                                <li>Investment Grade Corporate Bonds</li>
+                                <li>International Bonds</li>
+                                <li>Treasury Inflation-Protected Securities (TIPS)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="investment-category">
+                            <h4>🏠 Alternative Assets</h4>
+                            <ul>
+                                <li>Real Estate Investment Trusts (REITs)</li>
+                                <li>Commodities (Gold, Energy)</li>
+                                <li>International REITs</li>
+                                <li>Infrastructure investments</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p>All ETFs are selected based on low costs, liquidity, and tracking accuracy.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do you determine my optimal portfolio allocation?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our allocation process combines multiple sophisticated techniques:</p>
+                    
+                    <div class="allocation-process">
+                        <div class="process-step">
+                            <h4>1. Risk Profiling</h4>
+                            <p>Your questionnaire responses determine your risk tolerance and investment constraints.</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <h4>2. Expected Return Estimation</h4>
+                            <p>We calculate expected returns for each asset based on historical data, economic indicators, and risk factors.</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <h4>3. Covariance Analysis</h4>
+                            <p>We analyze how different assets move together to identify diversification opportunities.</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <h4>4. Mathematical Optimization</h4>
+                            <p>Advanced algorithms solve for the allocation that maximizes expected return for your target risk level.</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <h4>5. Constraint Application</h4>
+                            <p>We apply practical constraints like minimum/maximum allocations and tax considerations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How often do you rebalance portfolios?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We use a <strong>smart rebalancing approach</strong> that balances optimal allocations with cost efficiency:</p>
+                    
+                    <ul>
+                        <li><strong>Threshold-Based:</strong> Rebalance when any asset drifts more than 5% from target allocation</li>
+                        <li><strong>Time-Based Review:</strong> Quarterly assessment of all portfolios regardless of drift</li>
+                        <li><strong>Tax-Aware:</strong> Prioritize tax-loss harvesting opportunities when rebalancing</li>
+                        <li><strong>Cost-Conscious:</strong> Bundle small adjustments to minimize transaction costs</li>
+                    </ul>
+                    
+                    <p>Most portfolios rebalance 2-4 times per year, though volatile markets may trigger more frequent rebalancing.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you offer tax-loss harvesting?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Yes, for taxable accounts.</strong> Our tax-loss harvesting system:</p>
+                    
+                    <ul>
+                        <li><strong>Daily Monitoring:</strong> Scans for tax-loss opportunities every trading day</li>
+                        <li><strong>Wash Sale Compliance:</strong> Automatically avoids wash sale rule violations</li>
+                        <li><strong>Similar Asset Replacement:</strong> Maintains portfolio allocation while harvesting losses</li>
+                        <li><strong>Loss Banking:</strong> Captures losses to offset future gains</li>
+                    </ul>
+                    
+                    <p><strong>Tax Alpha:</strong> Tax-loss harvesting can add 0.2% - 0.7% to after-tax returns annually, particularly for higher-income investors.</p>
+                    
+                    <p><em>Note: Tax-loss harvesting is not available for tax-advantaged accounts like IRAs.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fees & Costs -->
+        <div class="faq-category" id="fees-costs">
+            <h2>💰 Fees & Costs</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What fees do I pay and how are they calculated?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Management Fee: 0.25% annually</strong></p>
+                    <ul>
+                        <li>Calculated daily based on your account value</li>
+                        <li>Charged monthly in arrears (after services provided)</li>
+                        <li>Automatically deducted from your account</li>
+                        <li>Prorated for partial months</li>
+                    </ul>
+                    
+                    <div class="fee-examples">
+                        <h4>Examples:</h4>
+                        <ul>
+                            <li>$10,000 account = $25/year = $2.08/month</li>
+                            <li>$50,000 account = $125/year = $10.42/month</li>
+                            <li>$100,000 account = $250/year = $20.83/month</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>No other fees:</strong> No setup fees, no transaction fees, no account maintenance fees, no hidden charges.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What about ETF expense ratios?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>In addition to our 0.25% management fee, you pay the <strong>underlying ETF expense ratios</strong>:</p>
+                    
+                    <div class="etf-expenses">
+                        <div class="expense-category">
+                            <h4>Typical ETF Expenses:</h4>
+                            <ul>
+                                <li><strong>US Equity ETFs:</strong> 0.03% - 0.20%</li>
+                                <li><strong>International ETFs:</strong> 0.05% - 0.25%</li>
+                                <li><strong>Bond ETFs:</strong> 0.03% - 0.15%</li>
+                                <li><strong>REIT/Commodity ETFs:</strong> 0.08% - 0.35%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Weighted Average:</strong> Most portfolios have a weighted average ETF expense ratio of 0.06% - 0.12%.</p>
+                    
+                    <p><strong>Total All-In Cost:</strong> Typically 0.31% - 0.37% annually (management fee + ETF expenses).</p>
+                    
+                    <p><em>We prioritize low-cost ETFs from Vanguard, iShares, and SPDR to minimize total costs.</em></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do your fees compare to other options?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="fee-comparison">
+                        <div class="comparison-item">
+                            <h4>Quantica</h4>
+                            <div class="fee">0.25%</div>
+                            <p>+ Advanced optimization + Tax harvesting + Educational resources</p>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <h4>Traditional Financial Advisor</h4>
+                            <div class="fee expensive">1.0% - 2.0%</div>
+                            <p>+ Personal meetings + Custom advice - Higher minimums</p>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <h4>Actively Managed Funds</h4>
+                            <div class="fee expensive">0.8% - 2.5%</div>
+                            <p>+ Professional management - Often underperform index</p>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <h4>DIY Index Funds</h4>
+                            <div class="fee">0.03% - 0.20%</div>
+                            <p>+ Very low cost - No rebalancing - No optimization</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Value Proposition:</strong> Professional portfolio management at a fraction of traditional advisor costs.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Are there any account closure or transfer fees?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>No fees from Quantica</strong> for:</p>
+                    <ul>
+                        <li>Account closure</li>
+                        <li>Transferring to another advisor</li>
+                        <li>Partial withdrawals</li>
+                        <li>Account inactivity</li>
+                    </ul>
+                    
+                    <p><strong>Possible third-party fees:</strong></p>
+                    <ul>
+                        <li>Receiving firm may charge transfer fees</li>
+                        <li>Wire transfer fees for large withdrawals</li>
+                        <li>Expedited transfer processing fees</li>
+                    </ul>
+                    
+                    <p>We'll always disclose any potential third-party fees before processing your request.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="faq-category" id="performance">
+            <h2>📈 Performance</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What returns can I expect from my portfolio?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Important:</strong> We cannot guarantee any specific returns. Investment performance depends on market conditions, your risk level, and time horizon.</p>
+                    
+                    <div class="historical-context">
+                        <h4>Historical Context (for reference only):</h4>
+                        <ul>
+                            <li><strong>Conservative Portfolio (30% stocks):</strong> ~5-7% annual return</li>
+                            <li><strong>Moderate Portfolio (60% stocks):</strong> ~7-9% annual return</li>
+                            <li><strong>Aggressive Portfolio (90% stocks):</strong> ~9-12% annual return</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Key Factors Affecting Returns:</strong></p>
+                    <ul>
+                        <li>Market performance and economic conditions</li>
+                        <li>Your risk tolerance and asset allocation</li>
+                        <li>Investment timeline and rebalancing frequency</li>
+                        <li>Costs and fees (which we minimize)</li>
+                    </ul>
+                    
+                    <p><em>Past performance does not guarantee future results. All investments carry risk of loss.</em></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do you measure and report performance?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide comprehensive performance reporting including:</p>
+                    
+                    <div class="performance-metrics">
+                        <div class="metric-category">
+                            <h4>📊 Return Metrics</h4>
+                            <ul>
+                                <li>Total return (including dividends)</li>
+                                <li>Time-weighted return</li>
+                                <li>Annualized return for multi-year periods</li>
+                                <li>After-fee return</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="metric-category">
+                            <h4>⚖️ Risk Metrics</h4>
+                            <ul>
+                                <li>Portfolio volatility (standard deviation)</li>
+                                <li>Maximum drawdown</li>
+                                <li>Sharpe ratio (risk-adjusted returns)</li>
+                                <li>Value at Risk (VaR)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="metric-category">
+                            <h4>📈 Benchmark Comparison</h4>
+                            <ul>
+                                <li>Performance vs. appropriate benchmarks</li>
+                                <li>Alpha (excess return vs. benchmark)</li>
+                                <li>Beta (sensitivity to market movements)</li>
+                                <li>Tracking error analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Reporting Frequency:</strong> Monthly statements with quarterly comprehensive performance reviews.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What happens during market downturns?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Market downturns are normal</strong> and our portfolios are designed to weather them through:</p>
+                    
+                    <div class="downturn-strategies">
+                        <div class="strategy">
+                            <h4>🛡️ Diversification</h4>
+                            <p>Multiple asset classes reduce correlation during market stress. When stocks decline, bonds often provide stability.</p>
+                        </div>
+                        
+                        <div class="strategy">
+                            <h4>🔄 Rebalancing Discipline</h4>
+                            <p>Automatic rebalancing forces "buy low, sell high" behavior during volatile periods.</p>
+                        </div>
+                        
+                        <div class="strategy">
+                            <h4>💰 Tax-Loss Harvesting</h4>
+                            <p>Market declines create tax-loss opportunities that can improve after-tax returns.</p>
+                        </div>
+                        
+                        <div class="strategy">
+                            <h4>📚 Investor Education</h4>
+                            <p>We provide market commentary and educational content to help you stay focused on long-term goals.</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Historical Perspective:</strong> Markets have recovered from every downturn in history. Patient, diversified investors are typically rewarded over time.</p>
+                    
+                    <p><em>We encourage clients to maintain their investment strategy during market volatility rather than making emotional decisions.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security & Safety -->
+        <div class="faq-category" id="security">
+            <h2>🛡️ Security & Safety</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How is my money protected?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Your assets are protected through multiple layers of security:</p>
+                    
+                    <div class="protection-layers">
+                        <div class="protection-item">
+                            <h4>🏛️ SIPC Insurance</h4>
+                            <p>Securities Investor Protection Corporation protects up to $500,000 per account ($250,000 for cash) against custodial failure.</p>
+                        </div>
+                        
+                        <div class="protection-item">
+                            <h4>🔒 Asset Segregation</h4>
+                            <p>Your assets are held in segregated accounts at our custodian, separate from Quantica's business assets.</p>
+                        </div>
+                        
+                        <div class="protection-item">
+                            <h4>🛡️ Additional Insurance</h4>
+                            <p>Our custodian carries additional private insurance beyond SIPC limits for extra protection.</p>
+                        </div>
+                        
+                        <div class="protection-item">
+                            <h4>👁️ Regulatory Oversight</h4>
+                            <p>As a registered investment advisor, we're subject to regular regulatory examinations and compliance requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Important:</strong> SIPC and insurance protect against custodial failure, not investment losses due to market performance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do you protect my personal and financial data?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We employ bank-level security measures to protect your data:</p>
+                    
+                    <div class="security-measures">
+                        <div class="security-category">
+                            <h4>🔐 Data Encryption</h4>
+                            <ul>
+                                <li>256-bit SSL encryption for all data transmission</li>
+                                <li>Encrypted storage of sensitive personal information</li>
+                                <li>End-to-end encryption for financial transactions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="security-category">
+                            <h4>🔑 Access Controls</h4>
+                            <ul>
+                                <li>Multi-factor authentication required</li>
+                                <li>Need-to-know access principles for employee data access</li>
+                                <li>Regular access reviews and deprovisioning</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="security-category">
+                            <h4>🛡️ Monitoring & Auditing</h4>
+                            <ul>
+                                <li>24/7 security monitoring and threat detection</li>
+                                <li>Regular penetration testing and vulnerability assessments</li>
+                                <li>Annual third-party security audits</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Privacy Commitment:</strong> We never sell your personal information and only share data as required for account management or by law.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What if Quantica goes out of business?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Your investments are protected</strong> because:</p>
+                    
+                    <ul>
+                        <li><strong>Asset Segregation:</strong> Your securities are held at an independent custodian, not at Quantica</li>
+                        <li><strong>Ownership Rights:</strong> You maintain direct ownership of all securities in your account</li>
+                        <li><strong>Transfer Rights:</strong> You can transfer your assets to another advisor or custodian</li>
+                        <li><strong>SIPC Protection:</strong> Custodial assets are protected by SIPC insurance</li>
+                    </ul>
+                    
+                    <div class="business-continuity">
+                        <h4>🔄 Business Continuity Plan</h4>
+                        <p>We maintain a comprehensive business continuity plan including:</p>
+                        <ul>
+                            <li>Backup systems and redundant infrastructure</li>
+                            <li>Alternative communication methods</li>
+                            <li>Client asset transfer procedures</li>
+                            <li>Emergency contact protocols</li>
+                        </ul>
+                    </div>
+                    
+                    <p><em>Your investments are your property and would never be at risk due to Quantica's business operations.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical -->
+        <div class="faq-category" id="technical">
+            <h2>⚙️ Technical</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I access my account and track performance?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Multiple ways to stay connected with your investments:</p>
+                    
+                    <div class="access-methods">
+                        <div class="access-method">
+                            <h4>🌐 Web Dashboard</h4>
+                            <ul>
+                                <li>Real-time portfolio values and performance</li>
+                                <li>Interactive charts and analytics</li>
+                                <li>Transaction history and tax documents</li>
+                                <li>Account settings and preferences</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="access-method">
+                            <h4>📱 Mobile Experience</h4>
+                            <ul>
+                                <li>Responsive web app optimized for mobile</li>
+                                <li>Native mobile app (coming Q2 2025)</li>
+                                <li>Push notifications for important updates</li>
+                                <li>Secure mobile authentication</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="access-method">
+                            <h4>📧 Regular Reporting</h4>
+                            <ul>
+                                <li>Monthly account statements</li>
+                                <li>Quarterly performance reviews</li>
+                                <li>Annual tax documentation</li>
+                                <li>Market insights and commentary</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I integrate with other financial apps and services?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Yes!</strong> We support integration with popular financial management tools:</p>
+                    
+                    <div class="integrations">
+                        <div class="integration-category">
+                            <h4>💰 Personal Finance Apps</h4>
+                            <ul>
+                                <li>Mint (account aggregation)</li>
+                                <li>Personal Capital (net worth tracking)</li>
+                                <li>YNAB (budget integration)</li>
+                                <li>Quicken (portfolio management)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="integration-category">
+                            <h4>📊 Investment Tracking</h4>
+                            <ul>
+                                <li>Morningstar (portfolio analysis)</li>
+                                <li>Yahoo Finance (performance tracking)</li>
+                                <li>Google Sheets (custom reporting)</li>
+                                <li>Excel (data export)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="integration-category">
+                            <h4>🔢 Tax Preparation</h4>
+                            <ul>
+                                <li>TurboTax (automatic import)</li>
+                                <li>H&R Block (tax document sharing)</li>
+                                <li>TaxAct (1099 integration)</li>
+                                <li>Professional tax software</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <p><strong>API Access:</strong> Developer API available for custom integrations and third-party applications.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What happens if the website is down or I can't access my account?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We maintain <strong>99.9% uptime</strong> through redundant systems, but if you experience issues:</p>
+                    
+                    <div class="support-options">
+                        <div class="support-option">
+                            <h4>📞 Phone Support</h4>
+                            <p>Call 1-800-QUANTICA for immediate assistance</p>
+                            <p>Available: Monday-Friday 8AM-8PM ET</p>
+                        </div>
+                        
+                        <div class="support-option">
+                            <h4>📧 Email Support</h4>
+                            <p>support@quantica.com</p>
+                            <p>Response time: Within 4 hours during business days</p>
+                        </div>
+                        
+                        <div class="support-option">
+                            <h4>🔄 Alternative Access</h4>
+                            <p>Direct custodian access for account information</p>
+                            <p>Mobile app as backup to web platform</p>
+                        </div>
+                    </div>
+                    
+                    <div class="system-status">
+                        <h4>📊 System Status</h4>
+                        <p>Check real-time system status at: <strong>status.quantica.com</strong></p>
+                        <ul>
+                            <li>Current system performance</li>
+                            <li>Scheduled maintenance notifications</li>
+                            <li>Historical uptime statistics</li>
+                            <li>Incident reports and resolution updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-footer">
+            <h2>Still Have Questions?</h2>
+            <p>Our team is here to help you understand intelligent investing and make the most of your Quantica experience.</p>
+            <div class="contact-options">
+                <a href="/support" class="contact-btn">Contact Support</a>
+                <a href="/methodology" class="contact-btn secondary">Learn More About Our Approach</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category switching
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const categories = document.querySelectorAll('.faq-category');
+    
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const categoryId = this.getAttribute('data-category');
+            
+            // Update active button
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show corresponding category
+            categories.forEach(cat => {
+                cat.classList.toggle('active', cat.id === categoryId);
+            });
+        });
+    });
+    
+    // FAQ item toggling
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.toggle-icon');
+        
+        question.addEventListener('click', function() {
+            const isOpen = item.classList.contains('open');
+            
+            // Close all other items in the same category
+            const currentCategory = item.closest('.faq-category');
+            currentCategory.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('open');
+                    otherItem.querySelector('.toggle-icon').textContent = '+';
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('open');
+            icon.textContent = isOpen ? '+' : '−';
+        });
+    });
+});
+</script>
+
+<style>
+.faq-container {
+    min-height: 100vh;
+    background: var(--background-color);
+}
+
+.faq-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.faq-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.faq-header .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.faq-content {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    color: var(--text-primary);
+}
+
+.faq-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    background: var(--surface-elevated);
+    padding: 1rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.category-btn {
+    background: transparent;
+    border: 2px solid transparent;
+    color: var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.category-btn:hover {
+    color: var(--primary-color);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.category-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.faq-category {
+    display: none;
+}
+
+.faq-category.active {
+    display: block;
+}
+
+.faq-category h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.faq-item {
+    background: var(--surface-elevated);
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background: var(--surface-color);
+}
+
+.faq-question h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: var(--transition);
+    min-width: 20px;
+    text-align: center;
+}
+
+.faq-answer {
+    padding: 0 2rem 1.5rem 2rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-top: 1px solid var(--border-color);
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 2000px;
+    padding-top: 1.5rem;
+}
+
+.faq-answer h4 {
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1rem;
+}
+
+.faq-answer ul, .faq-answer ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.faq-answer li {
+    margin-bottom: 0.5rem;
+}
+
+/* Specialty styling for specific content */
+.investment-categories,
+.allocation-process,
+.fee-examples,
+.etf-expenses,
+.fee-comparison,
+.historical-context,
+.performance-metrics,
+.downturn-strategies,
+.protection-layers,
+.security-measures,
+.business-continuity,
+.access-methods,
+.integrations {
+    margin: 1.5rem 0;
+}
+
+.investment-category,
+.process-step,
+.expense-category,
+.comparison-item,
+.metric-category,
+.strategy,
+.protection-item,
+.security-category,
+.access-method,
+.integration-category {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.investment-category h4,
+.process-step h4,
+.expense-category h4,
+.comparison-item h4,
+.metric-category h4,
+.strategy h4,
+.protection-item h4,
+.security-category h4,
+.access-method h4,
+.integration-category h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.fee {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.fee.expensive {
+    color: #ef4444;
+}
+
+.support-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.support-option {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.support-option h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.faq-footer {
+    text-align: center;
+    background: var(--surface-elevated);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    margin-top: 3rem;
+}
+
+.faq-footer h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.faq-footer p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.contact-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+}
+
+.contact-btn.secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.contact-btn.secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .faq-header h1 {
+        font-size: 2rem;
+    }
+    
+    .faq-categories {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .category-btn {
+        width: 200px;
+        text-align: center;
+    }
+    
+    .faq-question {
+        padding: 1rem 1.5rem;
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem 1rem 1.5rem;
+    }
+    
+    .faq-item.open .faq-answer {
+        padding-top: 1rem;
+    }
+    
+    .support-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-options {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+{% endblock %}

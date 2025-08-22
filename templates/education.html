@@ -1,0 +1,823 @@
+{% extends "base.html" %}
+
+{% block title %}Education Hub - Learn Intelligent Investing{% endblock %}
+
+{% block content %}
+<div class="education-container">
+    <div class="education-header">
+        <div class="container">
+            <h1>Quantica Education Hub</h1>
+            <p class="lead">Master the art and science of intelligent investing</p>
+            <div class="learning-paths">
+                <button class="path-button active" data-level="beginner">New to Investing</button>
+                <button class="path-button" data-level="intermediate">Growing Knowledge</button>
+                <button class="path-button" data-level="advanced">Expert Insights</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container education-content">
+        
+        <!-- Beginner Path -->
+        <div class="learning-path active" id="beginner-path">
+            <div class="path-intro">
+                <h2>🌱 New to Investing</h2>
+                <p>Start your investment journey with solid fundamentals. Learn the core concepts that every successful investor needs to know.</p>
+            </div>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>💰 Investment Basics</h3>
+                    <div class="topic-content">
+                        <h4>What is Investing?</h4>
+                        <p>Investing means putting your money to work to generate returns over time. Instead of keeping money in low-yield savings accounts, investing helps your wealth grow through:</p>
+                        <ul>
+                            <li><strong>Capital Appreciation:</strong> Asset values increasing over time</li>
+                            <li><strong>Dividends:</strong> Regular income payments from stocks</li>
+                            <li><strong>Interest:</strong> Fixed returns from bonds and deposits</li>
+                            <li><strong>Compound Growth:</strong> Returns generating their own returns</li>
+                        </ul>
+                        
+                        <h4>The Power of Compound Interest</h4>
+                        <div class="compound-example">
+                            <p><strong>Example:</strong> $10,000 invested for 30 years</p>
+                            <ul>
+                                <li>At 3% annual return: <strong>$24,273</strong></li>
+                                <li>At 7% annual return: <strong>$76,123</strong></li>
+                                <li>At 10% annual return: <strong>$174,494</strong></li>
+                            </ul>
+                            <p><em>Starting early makes a massive difference!</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>⚖️ Risk vs. Return</h3>
+                    <div class="topic-content">
+                        <h4>The Fundamental Trade-off</h4>
+                        <p>Higher potential returns typically come with higher risk. Understanding this relationship is crucial:</p>
+                        
+                        <div class="risk-return-scale">
+                            <div class="risk-item">
+                                <h5>💾 Low Risk, Low Return</h5>
+                                <p><strong>Savings Accounts, CDs:</strong> 1-3% annual return, virtually no risk of loss</p>
+                            </div>
+                            <div class="risk-item">
+                                <h5>🏛️ Moderate Risk, Moderate Return</h5>
+                                <p><strong>Government Bonds:</strong> 3-5% annual return, low risk of loss</p>
+                            </div>
+                            <div class="risk-item">
+                                <h5>🏢 Higher Risk, Higher Return</h5>
+                                <p><strong>Corporate Bonds:</strong> 4-7% annual return, some credit risk</p>
+                            </div>
+                            <div class="risk-item">
+                                <h5>📈 High Risk, High Return</h5>
+                                <p><strong>Stocks:</strong> 7-12% historical average, significant volatility</p>
+                            </div>
+                        </div>
+
+                        <h4>Your Risk Tolerance</h4>
+                        <p>Ask yourself:</p>
+                        <ul>
+                            <li>How would you feel if your portfolio dropped 20% in a month?</li>
+                            <li>Do you need this money in the next 5 years?</li>
+                            <li>Can you sleep well with market volatility?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🌍 Diversification</h3>
+                    <div class="topic-content">
+                        <h4>Don't Put All Eggs in One Basket</h4>
+                        <p>Diversification is your most powerful risk management tool. By spreading investments across different assets, you can reduce risk without sacrificing returns.</p>
+                        
+                        <div class="diversification-types">
+                            <div class="diversification-method">
+                                <h5>Asset Class Diversification</h5>
+                                <ul>
+                                    <li><strong>Stocks:</strong> Ownership in companies</li>
+                                    <li><strong>Bonds:</strong> Loans to companies/governments</li>
+                                    <li><strong>Real Estate:</strong> Property investments</li>
+                                    <li><strong>Commodities:</strong> Gold, oil, agricultural products</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="diversification-method">
+                                <h5>Geographic Diversification</h5>
+                                <ul>
+                                    <li><strong>Domestic:</strong> Your home country's markets</li>
+                                    <li><strong>International Developed:</strong> Europe, Japan, Australia</li>
+                                    <li><strong>Emerging Markets:</strong> China, India, Brazil</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="diversification-method">
+                                <h5>Time Diversification</h5>
+                                <ul>
+                                    <li><strong>Dollar-Cost Averaging:</strong> Regular investments regardless of market conditions</li>
+                                    <li><strong>Long-Term Perspective:</strong> Markets fluctuate, but tend to grow over decades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🎯 Goal Setting</h3>
+                    <div class="topic-content">
+                        <h4>Invest with Purpose</h4>
+                        <p>Successful investing starts with clear goals. Different goals require different strategies:</p>
+                        
+                        <div class="goal-types">
+                            <div class="goal-type">
+                                <h5>🏠 Short-term (1-3 years)</h5>
+                                <p><strong>Examples:</strong> Emergency fund, house down payment</p>
+                                <p><strong>Strategy:</strong> Low-risk investments like bonds, CDs, high-yield savings</p>
+                            </div>
+                            
+                            <div class="goal-type">
+                                <h5>🎓 Medium-term (3-10 years)</h5>
+                                <p><strong>Examples:</strong> Child's education, major purchase</p>
+                                <p><strong>Strategy:</strong> Balanced portfolio of stocks and bonds</p>
+                            </div>
+                            
+                            <div class="goal-type">
+                                <h5>🏖️ Long-term (10+ years)</h5>
+                                <p><strong>Examples:</strong> Retirement, generational wealth</p>
+                                <p><strong>Strategy:</strong> Growth-focused with higher stock allocation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intermediate Path -->
+        <div class="learning-path" id="intermediate-path">
+            <div class="path-intro">
+                <h2>📊 Growing Knowledge</h2>
+                <p>Build on your foundation with deeper insights into portfolio construction, market analysis, and advanced investment strategies.</p>
+            </div>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>🏗️ Modern Portfolio Theory</h3>
+                    <div class="topic-content">
+                        <h4>The Science of Portfolio Construction</h4>
+                        <p>Nobel Prize winner Harry Markowitz revolutionized investing with Mathematical Portfolio Theory (MPT). Key concepts:</p>
+                        
+                        <div class="mpt-concepts">
+                            <div class="concept">
+                                <h5>The Efficient Frontier</h5>
+                                <p>The optimal risk-return combinations. For any level of risk, there's a portfolio that provides maximum expected return.</p>
+                            </div>
+                            
+                            <div class="concept">
+                                <h5>Correlation Benefits</h5>
+                                <p>Assets that don't move together reduce portfolio volatility:</p>
+                                <ul>
+                                    <li><strong>Perfect Correlation (+1):</strong> Assets move identically</li>
+                                    <li><strong>No Correlation (0):</strong> Independent movements</li>
+                                    <li><strong>Negative Correlation (-1):</strong> Assets move oppositely</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="concept">
+                                <h5>The Sharpe Ratio</h5>
+                                <p><strong>Formula:</strong> (Return - Risk-Free Rate) / Volatility</p>
+                                <p>Measures risk-adjusted returns. Higher is better. A Sharpe ratio above 1.0 is considered good.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🔍 Asset Classes Deep Dive</h3>
+                    <div class="topic-content">
+                        <h4>Understanding Your Investment Options</h4>
+                        
+                        <div class="asset-classes">
+                            <div class="asset-class">
+                                <h5>📈 Equity Assets</h5>
+                                <ul>
+                                    <li><strong>Large Cap Stocks:</strong> Stable, dividend-paying companies</li>
+                                    <li><strong>Small Cap Stocks:</strong> Higher growth potential, more volatile</li>
+                                    <li><strong>International Stocks:</strong> Geographic diversification</li>
+                                    <li><strong>Emerging Markets:</strong> Higher growth, higher risk developing economies</li>
+                                </ul>
+                                <p><strong>Historical Return:</strong> ~10% annually (US stocks since 1926)</p>
+                                <p><strong>Volatility:</strong> ~16% standard deviation</p>
+                            </div>
+                            
+                            <div class="asset-class">
+                                <h5>🏛️ Fixed Income</h5>
+                                <ul>
+                                    <li><strong>Government Bonds:</strong> Safest, backed by government credit</li>
+                                    <li><strong>Corporate Bonds:</strong> Higher yield, some default risk</li>
+                                    <li><strong>International Bonds:</strong> Currency diversification</li>
+                                    <li><strong>TIPS:</strong> Inflation-protected treasury securities</li>
+                                </ul>
+                                <p><strong>Historical Return:</strong> ~5-6% annually</p>
+                                <p><strong>Volatility:</strong> ~4-6% standard deviation</p>
+                            </div>
+                            
+                            <div class="asset-class">
+                                <h5>🏠 Alternative Assets</h5>
+                                <ul>
+                                    <li><strong>REITs:</strong> Real estate investment trusts</li>
+                                    <li><strong>Commodities:</strong> Gold, oil, agricultural products</li>
+                                    <li><strong>Private Equity:</strong> Non-public company investments</li>
+                                    <li><strong>Hedge Funds:</strong> Alternative strategies</li>
+                                </ul>
+                                <p><strong>Purpose:</strong> Diversification, inflation protection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>⚙️ Rebalancing Strategies</h3>
+                    <div class="topic-content">
+                        <h4>Maintaining Optimal Allocations</h4>
+                        <p>As markets move, your portfolio drifts from target allocations. Rebalancing maintains your desired risk level and can enhance returns.</p>
+                        
+                        <div class="rebalancing-methods">
+                            <div class="method">
+                                <h5>📅 Time-Based Rebalancing</h5>
+                                <p>Rebalance on a schedule (monthly, quarterly, annually)</p>
+                                <p><strong>Pros:</strong> Simple, disciplined approach</p>
+                                <p><strong>Cons:</strong> May miss significant drift periods</p>
+                            </div>
+                            
+                            <div class="method">
+                                <h5>🎯 Threshold-Based Rebalancing</h5>
+                                <p>Rebalance when allocations drift beyond tolerance bands (e.g., ±5%)</p>
+                                <p><strong>Pros:</strong> Responsive to market movements</p>
+                                <p><strong>Cons:</strong> May trigger frequent rebalancing in volatile markets</p>
+                            </div>
+                            
+                            <div class="method">
+                                <h5>🔄 Hybrid Approach</h5>
+                                <p>Combine both methods: check quarterly, rebalance if beyond thresholds</p>
+                                <p><strong>Pros:</strong> Balances simplicity and responsiveness</p>
+                                <p><strong>Best Practice:</strong> Most recommended by financial advisors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>📊 Performance Analysis</h3>
+                    <div class="topic-content">
+                        <h4>Measuring Investment Success</h4>
+                        <p>Beyond simple returns, sophisticated investors use multiple metrics to evaluate performance:</p>
+                        
+                        <div class="performance-metrics">
+                            <div class="metric">
+                                <h5>Total Return</h5>
+                                <p>Capital appreciation + dividends/interest</p>
+                                <p><strong>Annualized Return:</strong> Geometric mean for multi-year periods</p>
+                            </div>
+                            
+                            <div class="metric">
+                                <h5>Risk-Adjusted Returns</h5>
+                                <ul>
+                                    <li><strong>Sharpe Ratio:</strong> Excess return per unit of total risk</li>
+                                    <li><strong>Sortino Ratio:</strong> Excess return per unit of downside risk</li>
+                                    <li><strong>Alpha:</strong> Excess return vs. benchmark</li>
+                                    <li><strong>Beta:</strong> Sensitivity to market movements</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="metric">
+                                <h5>Downside Protection</h5>
+                                <ul>
+                                    <li><strong>Maximum Drawdown:</strong> Largest peak-to-trough decline</li>
+                                    <li><strong>Value at Risk (VaR):</strong> Potential loss at confidence level</li>
+                                    <li><strong>Calmar Ratio:</strong> Annual return / maximum drawdown</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Path -->
+        <div class="learning-path" id="advanced-path">
+            <div class="path-intro">
+                <h2>🎓 Expert Insights</h2>
+                <p>Advanced concepts for sophisticated investors: factor investing, alternative strategies, and cutting-edge portfolio optimization techniques.</p>
+            </div>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>🔬 Factor Investing</h3>
+                    <div class="topic-content">
+                        <h4>Beyond Market Beta</h4>
+                        <p>Factor investing targets specific drivers of returns. Based on decades of academic research identifying systematic sources of excess returns.</p>
+                        
+                        <div class="factors">
+                            <div class="factor">
+                                <h5>📊 Value Factor</h5>
+                                <p>Stocks with low price-to-book, price-to-earnings ratios historically outperform</p>
+                                <p><strong>Academic Basis:</strong> Fama-French three-factor model</p>
+                                <p><strong>Implementation:</strong> Value-tilted ETFs, fundamental indexing</p>
+                            </div>
+                            
+                            <div class="factor">
+                                <h5>📏 Size Factor</h5>
+                                <p>Small-cap stocks have historically provided higher returns than large-cap</p>
+                                <p><strong>Risk:</strong> Higher volatility, liquidity constraints</p>
+                                <p><strong>Cyclical:</strong> Long periods of underperformance possible</p>
+                            </div>
+                            
+                            <div class="factor">
+                                <h5>🚀 Momentum Factor</h5>
+                                <p>Stocks that have outperformed continue to outperform in short-medium term</p>
+                                <p><strong>Academic Basis:</strong> Carhart four-factor model</p>
+                                <p><strong>Implementation:</strong> Systematic trend-following strategies</p>
+                            </div>
+                            
+                            <div class="factor">
+                                <h5>💰 Profitability Factor</h5>
+                                <p>Companies with high profitability metrics outperform</p>
+                                <p><strong>Metrics:</strong> ROE, ROA, gross margins, earnings quality</p>
+                                <p><strong>Fama-French Five-Factor:</strong> Added profitability and investment factors</p>
+                            </div>
+                            
+                            <div class="factor">
+                                <h5>🏃 Low Volatility Factor</h5>
+                                <p>Lower-risk stocks often provide higher risk-adjusted returns</p>
+                                <p><strong>Anomaly:</strong> Contradicts CAPM theory</p>
+                                <p><strong>Explanation:</strong> Leverage constraints, behavioral biases</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>🌍 Alternative Risk Premia</h3>
+                    <div class="topic-content">
+                        <h4>Beyond Traditional Assets</h4>
+                        <p>Sophisticated investors access returns from non-traditional sources:</p>
+                        
+                        <div class="alt-strategies">
+                            <div class="strategy">
+                                <h5>📈 Volatility Risk Premium</h5>
+                                <p>Systematic selling of volatility (VIX) options</p>
+                                <p><strong>Rationale:</strong> Volatility typically mean-reverts</p>
+                                <p><strong>Risks:</strong> Tail risk, volatility spikes</p>
+                            </div>
+                            
+                            <div class="strategy">
+                                <h5>💱 Currency Carry</h5>
+                                <p>Borrowing low-yield currencies to invest in high-yield currencies</p>
+                                <p><strong>Return Source:</strong> Interest rate differentials</p>
+                                <p><strong>Risks:</strong> Currency depreciation, central bank policy changes</p>
+                            </div>
+                            
+                            <div class="strategy">
+                                <h5>📊 Mean Reversion</h5>
+                                <p>Assets that deviate from fundamentals tend to revert</p>
+                                <p><strong>Examples:</strong> Statistical arbitrage, pairs trading</p>
+                                <p><strong>Implementation:</strong> Quantitative models, high-frequency execution</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>⚡ Optimization Techniques</h3>
+                    <div class="topic-content">
+                        <h4>Advanced Portfolio Construction</h4>
+                        
+                        <div class="optimization-methods">
+                            <div class="method">
+                                <h5>🎯 Black-Litterman Model</h5>
+                                <p>Improves on mean-variance optimization by incorporating market equilibrium and investor views</p>
+                                <p><strong>Advantages:</strong> More stable allocations, incorporates uncertainty</p>
+                                <p><strong>Process:</strong> Start with market cap weights, adjust for views</p>
+                            </div>
+                            
+                            <div class="method">
+                                <h5>🛡️ Risk Parity</h5>
+                                <p>Allocate risk equally across assets rather than capital equally</p>
+                                <p><strong>Formula:</strong> Weight = 1 / (Volatility × Marginal Risk Contribution)</p>
+                                <p><strong>Result:</strong> More diversified risk exposure</p>
+                            </div>
+                            
+                            <div class="method">
+                                <h5>🎲 Monte Carlo Optimization</h5>
+                                <p>Use simulation to account for parameter uncertainty</p>
+                                <p><strong>Process:</strong> Generate thousands of return scenarios, optimize across all</p>
+                                <p><strong>Benefit:</strong> More robust to estimation errors</p>
+                            </div>
+                            
+                            <div class="method">
+                                <h5>🏛️ Robust Optimization</h5>
+                                <p>Optimize for worst-case scenarios within uncertainty bounds</p>
+                                <p><strong>Approach:</strong> Minimize maximum regret across parameter sets</p>
+                                <p><strong>Trade-off:</strong> Lower expected returns, higher worst-case protection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3>📊 Behavioral Finance</h3>
+                    <div class="topic-content">
+                        <h4>Psychology Meets Markets</h4>
+                        <p>Understanding behavioral biases helps improve investment decisions:</p>
+                        
+                        <div class="biases">
+                            <div class="bias">
+                                <h5>📉 Loss Aversion</h5>
+                                <p>Losses feel twice as painful as equivalent gains</p>
+                                <p><strong>Impact:</strong> Premature selling, insufficient risk-taking</p>
+                                <p><strong>Solution:</strong> Focus on long-term goals, systematic rebalancing</p>
+                            </div>
+                            
+                            <div class="bias">
+                                <h5>🎲 Availability Bias</h5>
+                                <p>Overweighting recent or memorable events</p>
+                                <p><strong>Example:</strong> Avoiding stocks after market crashes</p>
+                                <p><strong>Solution:</strong> Systematic decision-making, historical perspective</p>
+                            </div>
+                            
+                            <div class="bias">
+                                <h5>🔄 Recency Bias</h5>
+                                <p>Believing recent trends will continue indefinitely</p>
+                                <p><strong>Impact:</strong> Buying high, selling low</p>
+                                <p><strong>Solution:</strong> Contrarian rebalancing, mean reversion awareness</p>
+                            </div>
+                            
+                            <div class="bias">
+                                <h5>⚓ Anchoring Bias</h5>
+                                <p>Over-relying on first piece of information received</p>
+                                <p><strong>Example:</strong> Using purchase price as reference point</p>
+                                <p><strong>Solution:</strong> Focus on forward-looking fundamentals</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="learning-resources">
+            <h2>📚 Additional Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>Essential Books</h3>
+                    <ul>
+                        <li><strong>"A Random Walk Down Wall Street"</strong> - Burton Malkiel</li>
+                        <li><strong>"The Intelligent Investor"</strong> - Benjamin Graham</li>
+                        <li><strong>"Common Sense on Mutual Funds"</strong> - John Bogle</li>
+                        <li><strong>"Your Money or Your Life"</strong> - Vicki Robin</li>
+                        <li><strong>"The Little Book of Common Sense Investing"</strong> - John Bogle</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-category">
+                    <h3>Academic Papers</h3>
+                    <ul>
+                        <li><strong>"Portfolio Selection"</strong> - Harry Markowitz (1952)</li>
+                        <li><strong>"The Capital Asset Pricing Model"</strong> - William Sharpe (1964)</li>
+                        <li><strong>"The Cross-Section of Expected Stock Returns"</strong> - Fama & French (1992)</li>
+                        <li><strong>"Common risk factors in the returns on stocks and bonds"</strong> - Fama & French (1993)</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-category">
+                    <h3>Research Websites</h3>
+                    <ul>
+                        <li><strong>SSRN</strong> - Social Science Research Network</li>
+                        <li><strong>Morningstar</strong> - Investment research and analysis</li>
+                        <li><strong>Vanguard Research</strong> - Academic investment insights</li>
+                        <li><strong>CFA Institute</strong> - Professional investment education</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="education-cta">
+            <h2>Ready to Put Your Knowledge to Work?</h2>
+            <p>Apply these concepts with Quantica's intelligent portfolio optimization.</p>
+            <a href="/risk-assessment" class="cta-button">Build My Portfolio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const pathButtons = document.querySelectorAll('.path-button');
+    const learningPaths = document.querySelectorAll('.learning-path');
+    
+    pathButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const level = this.getAttribute('data-level');
+            
+            // Update active button
+            pathButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update active path
+            learningPaths.forEach(path => path.classList.remove('active'));
+            document.getElementById(level + '-path').classList.add('active');
+        });
+    });
+});
+</script>
+
+<style>
+.education-container {
+    min-height: 100vh;
+    background: var(--background-color);
+}
+
+.education-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #10b981 100%);
+    color: white;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.education-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.education-header .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.learning-paths {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.path-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.path-button:hover,
+.path-button.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--secondary-color);
+    border-color: white;
+}
+
+.education-content {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    color: var(--text-primary);
+}
+
+.learning-path {
+    display: none;
+}
+
+.learning-path.active {
+    display: block;
+}
+
+.path-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.path-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.path-intro p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.topics-grid {
+    display: grid;
+    gap: 3rem;
+    margin: 3rem 0;
+}
+
+.topic-card {
+    background: var(--surface-elevated);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.topic-card h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.topic-content h4 {
+    color: var(--text-primary);
+    margin: 2rem 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.topic-content h5 {
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.topic-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.topic-content ul {
+    color: var(--text-secondary);
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.topic-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.compound-example {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.risk-return-scale {
+    margin: 1.5rem 0;
+}
+
+.risk-item {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.diversification-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.diversification-method {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.goal-types {
+    margin: 1.5rem 0;
+}
+
+.goal-type {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.mpt-concepts,
+.asset-classes,
+.rebalancing-methods,
+.performance-metrics,
+.factors,
+.alt-strategies,
+.optimization-methods,
+.biases {
+    margin: 1.5rem 0;
+}
+
+.concept,
+.asset-class,
+.method,
+.metric,
+.factor,
+.strategy,
+.bias {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.learning-resources {
+    margin: 4rem 0;
+    background: var(--surface-elevated);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.learning-resources h2 {
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.resource-category h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.resource-category ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.resource-category li {
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.education-cta {
+    text-align: center;
+    background: var(--surface-elevated);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    margin-top: 3rem;
+}
+
+.education-cta h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    .education-header h1 {
+        font-size: 2rem;
+    }
+    
+    .path-intro h2 {
+        font-size: 1.8rem;
+    }
+    
+    .learning-paths {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .path-button {
+        width: 200px;
+        text-align: center;
+    }
+    
+    .diversification-types,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

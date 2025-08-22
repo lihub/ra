@@ -1,0 +1,1151 @@
+{% extends "base.html" %}
+
+{% block title %}Support & Contact - Quantica{% endblock %}
+
+{% block content %}
+<div class="support-container">
+    <div class="support-header">
+        <div class="container">
+            <h1>We're Here to Help</h1>
+            <p class="lead">Get the support you need to make the most of your Quantica investment experience</p>
+        </div>
+    </div>
+
+    <div class="container support-content">
+        
+        <!-- Quick Help Section -->
+        <section class="quick-help">
+            <h2>Get Help Fast</h2>
+            <div class="help-options">
+                <div class="help-option">
+                    <div class="help-icon">❓</div>
+                    <h3>Frequently Asked Questions</h3>
+                    <p>Find answers to common questions about investing, fees, performance, and account management.</p>
+                    <a href="/faq" class="help-btn">Browse FAQ</a>
+                </div>
+                
+                <div class="help-option">
+                    <div class="help-icon">📚</div>
+                    <h3>Education Hub</h3>
+                    <p>Learn about investing fundamentals, Modern Portfolio Theory, and advanced strategies.</p>
+                    <a href="/education" class="help-btn">Start Learning</a>
+                </div>
+                
+                <div class="help-option">
+                    <div class="help-icon">⚙️</div>
+                    <h3>How It Works</h3>
+                    <p>Understand our methodology, optimization process, and portfolio management approach.</p>
+                    <a href="/methodology" class="help-btn">Learn Our Process</a>
+                </div>
+                
+                <div class="help-option">
+                    <div class="help-icon">💰</div>
+                    <h3>Pricing & Fees</h3>
+                    <p>Transparent information about our fee structure and cost comparisons.</p>
+                    <a href="/pricing" class="help-btn">View Pricing</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Methods -->
+        <section class="contact-methods">
+            <h2>Contact Our Support Team</h2>
+            <p>Our knowledgeable support team is ready to help with any questions about your account, investments, or platform features.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-method priority">
+                    <div class="method-header">
+                        <div class="method-icon">📞</div>
+                        <h3>Phone Support</h3>
+                        <div class="priority-badge">Fastest Response</div>
+                    </div>
+                    <div class="method-details">
+                        <div class="contact-info">
+                            <strong>1-800-QUANTICA</strong><br>
+                            <strong>(1-800-782-6842)</strong>
+                        </div>
+                        <div class="hours">
+                            <strong>Business Hours:</strong><br>
+                            Monday - Friday: 8:00 AM - 8:00 PM ET<br>
+                            Saturday: 9:00 AM - 5:00 PM ET<br>
+                            Sunday: Closed
+                        </div>
+                        <div class="response-time">
+                            <strong>Average Wait Time:</strong> Less than 2 minutes
+                        </div>
+                        <p>Call us for immediate assistance with account questions, technical issues, or investment concerns.</p>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="method-header">
+                        <div class="method-icon">📧</div>
+                        <h3>Email Support</h3>
+                    </div>
+                    <div class="method-details">
+                        <div class="contact-info">
+                            <strong>support@quantica.com</strong>
+                        </div>
+                        <div class="response-time">
+                            <strong>Response Time:</strong><br>
+                            Business Hours: Within 4 hours<br>
+                            After Hours: Next business day
+                        </div>
+                        <p>Email us for detailed questions, account documentation requests, or non-urgent matters.</p>
+                        <a href="mailto:support@quantica.com" class="contact-btn">Send Email</a>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="method-header">
+                        <div class="method-icon">💬</div>
+                        <h3>Live Chat</h3>
+                    </div>
+                    <div class="method-details">
+                        <div class="hours">
+                            <strong>Available:</strong><br>
+                            Monday - Friday: 8:00 AM - 8:00 PM ET<br>
+                            Saturday: 9:00 AM - 5:00 PM ET
+                        </div>
+                        <div class="response-time">
+                            <strong>Response Time:</strong> Typically under 1 minute
+                        </div>
+                        <p>Chat with our support team for quick questions and real-time assistance.</p>
+                        <button class="contact-btn" onclick="startLiveChat()">Start Chat</button>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="method-header">
+                        <div class="method-icon">📍</div>
+                        <h3>Mailing Address</h3>
+                    </div>
+                    <div class="method-details">
+                        <div class="contact-info">
+                            <strong>Quantica Investment Management</strong><br>
+                            Attention: Client Services<br>
+                            [Street Address]<br>
+                            [City, State ZIP Code]
+                        </div>
+                        <div class="response-time">
+                            <strong>Processing Time:</strong> 3-5 business days
+                        </div>
+                        <p>Send us documents, formal requests, or correspondence that requires physical delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specialized Support -->
+        <section class="specialized-support">
+            <h2>Specialized Support</h2>
+            <p>For specific types of inquiries, we have dedicated teams to provide expert assistance.</p>
+            
+            <div class="support-teams">
+                <div class="support-team">
+                    <h3>🔧 Technical Support</h3>
+                    <p><strong>technical@quantica.com</strong></p>
+                    <ul>
+                        <li>Platform navigation and features</li>
+                        <li>Mobile app assistance</li>
+                        <li>Login and access issues</li>
+                        <li>Integration with third-party apps</li>
+                        <li>API and developer support</li>
+                    </ul>
+                </div>
+
+                <div class="support-team">
+                    <h3>💼 Account Management</h3>
+                    <p><strong>accounts@quantica.com</strong></p>
+                    <ul>
+                        <li>Account opening and setup</li>
+                        <li>Profile updates and changes</li>
+                        <li>Account transfers and rollovers</li>
+                        <li>Beneficiary and ownership changes</li>
+                        <li>Account closure requests</li>
+                    </ul>
+                </div>
+
+                <div class="support-team">
+                    <h3>📊 Investment Advisory</h3>
+                    <p><strong>advisory@quantica.com</strong></p>
+                    <ul>
+                        <li>Portfolio allocation questions</li>
+                        <li>Risk assessment guidance</li>
+                        <li>Performance analysis and reporting</li>
+                        <li>Investment strategy explanations</li>
+                        <li>Market outlook and insights</li>
+                    </ul>
+                </div>
+
+                <div class="support-team">
+                    <h3>⚖️ Compliance & Legal</h3>
+                    <p><strong>compliance@quantica.com</strong></p>
+                    <ul>
+                        <li>Regulatory questions and concerns</li>
+                        <li>Form ADV and disclosure documents</li>
+                        <li>Privacy and data protection inquiries</li>
+                        <li>Complaint resolution</li>
+                        <li>Legal and regulatory compliance</li>
+                    </ul>
+                </div>
+
+                <div class="support-team">
+                    <h3>📋 Tax Support</h3>
+                    <p><strong>tax@quantica.com</strong></p>
+                    <ul>
+                        <li>Tax document questions (1099s, etc.)</li>
+                        <li>Tax-loss harvesting inquiries</li>
+                        <li>Cost basis and gain/loss reporting</li>
+                        <li>Tax optimization strategies</li>
+                        <li>Year-end tax planning</li>
+                    </ul>
+                </div>
+
+                <div class="support-team">
+                    <h3>🎓 Education & Resources</h3>
+                    <p><strong>education@quantica.com</strong></p>
+                    <ul>
+                        <li>Investment education content</li>
+                        <li>Webinar and workshop information</li>
+                        <li>Research reports and market analysis</li>
+                        <li>Financial planning resources</li>
+                        <li>Educational material requests</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Resources -->
+        <section class="support-resources">
+            <h2>Self-Service Resources</h2>
+            <p>Access helpful resources and tools to manage your account and learn about investing.</p>
+            
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <div class="resource-icon">📖</div>
+                    <h3>Knowledge Base</h3>
+                    <p>Comprehensive articles and guides covering all aspects of Quantica's platform and services.</p>
+                    <div class="resource-topics">
+                        <span class="topic-tag">Getting Started</span>
+                        <span class="topic-tag">Portfolio Management</span>
+                        <span class="topic-tag">Tax Optimization</span>
+                        <span class="topic-tag">Performance Tracking</span>
+                    </div>
+                    <a href="#" class="resource-btn">Browse Knowledge Base</a>
+                </div>
+
+                <div class="resource-item">
+                    <div class="resource-icon">🎥</div>
+                    <h3>Video Tutorials</h3>
+                    <p>Step-by-step video guides to help you navigate the platform and understand key features.</p>
+                    <div class="resource-topics">
+                        <span class="topic-tag">Platform Tour</span>
+                        <span class="topic-tag">Risk Assessment</span>
+                        <span class="topic-tag">Performance Analysis</span>
+                        <span class="topic-tag">Account Settings</span>
+                    </div>
+                    <a href="#" class="resource-btn">Watch Tutorials</a>
+                </div>
+
+                <div class="resource-item">
+                    <div class="resource-icon">📊</div>
+                    <h3>System Status</h3>
+                    <p>Real-time information about platform performance, scheduled maintenance, and service disruptions.</p>
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <div class="status-dot green"></div>
+                            <span>Platform: Operational</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-dot green"></div>
+                            <span>Trading: Normal</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-dot green"></div>
+                            <span>Mobile App: Operational</span>
+                        </div>
+                    </div>
+                    <a href="#" class="resource-btn">View Full Status</a>
+                </div>
+
+                <div class="resource-item">
+                    <div class="resource-icon">📝</div>
+                    <h3>Forms & Documents</h3>
+                    <p>Download important forms, agreements, and regulatory documents.</p>
+                    <div class="document-list">
+                        <ul>
+                            <li>Account Opening Forms</li>
+                            <li>Investment Policy Statement</li>
+                            <li>Form ADV (Regulatory Disclosure)</li>
+                            <li>Privacy Policy</li>
+                            <li>Terms of Service</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="resource-btn">Access Documents</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Hours & SLA -->
+        <section class="support-sla">
+            <h2>Our Support Commitment</h2>
+            <div class="sla-grid">
+                <div class="sla-item">
+                    <h3>📞 Phone Support</h3>
+                    <div class="sla-metric">
+                        <span class="metric-value">< 2 min</span>
+                        <span class="metric-label">Average Wait Time</span>
+                    </div>
+                    <div class="sla-metric">
+                        <span class="metric-value">95%</span>
+                        <span class="metric-label">Calls Answered in 30 Seconds</span>
+                    </div>
+                </div>
+
+                <div class="sla-item">
+                    <h3>📧 Email Support</h3>
+                    <div class="sla-metric">
+                        <span class="metric-value">< 4 hours</span>
+                        <span class="metric-label">Business Day Response</span>
+                    </div>
+                    <div class="sla-metric">
+                        <span class="metric-value">98%</span>
+                        <span class="metric-label">Satisfaction Rate</span>
+                    </div>
+                </div>
+
+                <div class="sla-item">
+                    <h3>💬 Live Chat</h3>
+                    <div class="sla-metric">
+                        <span class="metric-value">< 1 min</span>
+                        <span class="metric-label">Average Response Time</span>
+                    </div>
+                    <div class="sla-metric">
+                        <span class="metric-value">24/7</span>
+                        <span class="metric-label">Availability During Business Hours</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Support -->
+        <section class="emergency-support">
+            <h2>🚨 Emergency Support</h2>
+            <div class="emergency-info">
+                <div class="emergency-item">
+                    <h3>Account Security Issues</h3>
+                    <p>If you suspect unauthorized access to your account or notice suspicious activity:</p>
+                    <ul>
+                        <li><strong>Call immediately:</strong> 1-800-QUANTICA</li>
+                        <li><strong>Email:</strong> security@quantica.com</li>
+                        <li>Change your password if possible</li>
+                        <li>Review recent account activity</li>
+                    </ul>
+                </div>
+
+                <div class="emergency-item">
+                    <h3>Platform Outages</h3>
+                    <p>If you cannot access your account due to technical issues:</p>
+                    <ul>
+                        <li>Check system status at <strong>status.quantica.com</strong></li>
+                        <li>Try clearing your browser cache and cookies</li>
+                        <li>Use our mobile app as an alternative</li>
+                        <li>Call support for account information</li>
+                    </ul>
+                </div>
+
+                <div class="emergency-item">
+                    <h3>Market Events</h3>
+                    <p>During significant market volatility or events:</p>
+                    <ul>
+                        <li>Check our blog for market commentary</li>
+                        <li>Review your risk tolerance settings</li>
+                        <li>Avoid making emotional investment decisions</li>
+                        <li>Contact advisory team for guidance if needed</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback -->
+        <section class="feedback-section">
+            <h2>Help Us Improve</h2>
+            <p>Your feedback helps us enhance our platform and services for all investors.</p>
+            
+            <div class="feedback-options">
+                <div class="feedback-option">
+                    <h3>💡 Feature Requests</h3>
+                    <p>Suggest new features or improvements to our platform.</p>
+                    <a href="mailto:feedback@quantica.com?subject=Feature Request" class="feedback-btn">Submit Idea</a>
+                </div>
+
+                <div class="feedback-option">
+                    <h3>🐛 Bug Reports</h3>
+                    <p>Report technical issues or unexpected platform behavior.</p>
+                    <a href="mailto:bugs@quantica.com?subject=Bug Report" class="feedback-btn">Report Bug</a>
+                </div>
+
+                <div class="feedback-option">
+                    <h3>⭐ Service Feedback</h3>
+                    <p>Share your experience with our support team or overall service.</p>
+                    <a href="mailto:feedback@quantica.com?subject=Service Feedback" class="feedback-btn">Give Feedback</a>
+                </div>
+
+                <div class="feedback-option">
+                    <h3>📝 Survey Participation</h3>
+                    <p>Participate in periodic surveys to help shape our roadmap.</p>
+                    <a href="#" class="feedback-btn">Take Survey</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form-section">
+            <h2>Send Us a Message</h2>
+            <p>Can't find what you're looking for? Send us a detailed message and we'll get back to you promptly.</p>
+            
+            <form class="contact-form" id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountNumber">Account Number (if applicable)</label>
+                    <input type="text" id="accountNumber" name="accountNumber" placeholder="Optional - helps us locate your account faster">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Inquiry Category *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="account">Account Management</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="investment">Investment Questions</option>
+                        <option value="performance">Performance & Reporting</option>
+                        <option value="fees">Fees & Billing</option>
+                        <option value="tax">Tax Questions</option>
+                        <option value="compliance">Compliance & Legal</option>
+                        <option value="feedback">Feedback & Suggestions</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority Level</label>
+                    <select id="priority" name="priority">
+                        <option value="low">Low - General Question</option>
+                        <option value="normal" selected>Normal - Standard Inquiry</option>
+                        <option value="high">High - Urgent Issue</option>
+                        <option value="critical">Critical - Account Security</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" placeholder="Brief description of your inquiry" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Please provide as much detail as possible to help us assist you effectively..." required></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span class="checkmark"></span>
+                        Send me Quantica's monthly newsletter with market insights and platform updates
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-loading">Sending...</span>
+                </button>
+
+                <p class="form-note">
+                    * Required fields. We typically respond within 4 hours during business days.
+                    For urgent matters, please call 1-800-QUANTICA.
+                </p>
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Live chat simulation
+function startLiveChat() {
+    alert('Live chat would open here. This is a demo implementation.');
+    // In a real implementation, this would open your live chat widget
+}
+
+// Contact form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const submitBtn = form.querySelector('.submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        
+        // Simulate form submission
+        setTimeout(function() {
+            alert('Thank you for your message! We\'ll get back to you within 4 hours during business days.');
+            
+            // Reset form
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+        }, 2000);
+    });
+
+    // Auto-populate subject based on category
+    const categorySelect = document.getElementById('category');
+    const subjectInput = document.getElementById('subject');
+    
+    categorySelect.addEventListener('change', function() {
+        if (!subjectInput.value) {
+            const subjects = {
+                'account': 'Account management inquiry',
+                'technical': 'Technical support needed',
+                'investment': 'Investment strategy question',
+                'performance': 'Performance reporting question',
+                'fees': 'Fee structure inquiry',
+                'tax': 'Tax documentation question',
+                'compliance': 'Compliance inquiry',
+                'feedback': 'Platform feedback'
+            };
+            
+            if (subjects[this.value]) {
+                subjectInput.value = subjects[this.value];
+            }
+        }
+    });
+});
+</script>
+
+<style>
+.support-container {
+    min-height: 100vh;
+    background: var(--background-color);
+}
+
+.support-header {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #10b981 100%);
+    color: white;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.support-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.support-header .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.support-content {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    color: var(--text-primary);
+}
+
+.support-content section {
+    margin-bottom: 4rem;
+}
+
+.support-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Quick Help */
+.help-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.help-option {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.help-option:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.help-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.help-option h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.help-option p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.help-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.help-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Contact Methods */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.contact-method {
+    background: var(--surface-elevated);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.contact-method:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-method.priority {
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 8px 25px rgba(6, 214, 160, 0.3);
+}
+
+.method-header {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.priority-badge {
+    position: absolute;
+    top: -10px;
+    right: 1rem;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.method-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.method-header h3 {
+    color: var(--text-primary);
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.method-details {
+    padding: 1.5rem;
+}
+
+.contact-info {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.hours,
+.response-time {
+    background: var(--background-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.method-details p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.contact-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.contact-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Support Teams */
+.support-teams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.support-team {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.support-team h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.support-team p {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.support-team ul {
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.support-team li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Resources */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.resource-item {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.resource-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.resource-item h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.resource-item p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.resource-topics {
+    margin-bottom: 1.5rem;
+}
+
+.topic-tag {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    margin: 0.25rem;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+}
+
+.status-indicators {
+    margin-bottom: 1.5rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-dot.green {
+    background: var(--secondary-color);
+}
+
+.document-list ul {
+    text-align: left;
+    padding-left: 1rem;
+    color: var(--text-secondary);
+}
+
+.document-list li {
+    margin-bottom: 0.5rem;
+}
+
+.resource-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.resource-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* SLA Section */
+.sla-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.sla-item {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.sla-item h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.sla-metric {
+    margin-bottom: 1rem;
+}
+
+.metric-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Emergency Support */
+.emergency-info {
+    margin: 2rem 0;
+}
+
+.emergency-item {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid #ef4444;
+    margin-bottom: 2rem;
+}
+
+.emergency-item h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.emergency-item p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.emergency-item ul {
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.emergency-item li {
+    margin-bottom: 0.5rem;
+}
+
+/* Feedback Section */
+.feedback-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.feedback-option {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.feedback-option h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.feedback-option p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.feedback-btn {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.feedback-btn:hover {
+    background: #10b981;
+    transform: translateY(-2px);
+}
+
+/* Contact Form */
+.contact-form-section {
+    background: var(--surface-elevated);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--surface-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1);
+}
+
+.checkbox-group {
+    margin: 2rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 0.75rem;
+    margin-top: 0.1rem;
+    width: auto;
+}
+
+.submit-btn {
+    width: 100%;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #10b981;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(6, 214, 160, 0.4);
+}
+
+.submit-btn:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-loading {
+    display: none;
+}
+
+.submit-btn.loading .btn-text {
+    display: none;
+}
+
+.submit-btn.loading .btn-loading {
+    display: inline;
+}
+
+.form-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .support-header h1 {
+        font-size: 2rem;
+    }
+    
+    .help-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .support-teams,
+    .resources-grid,
+    .feedback-options,
+    .sla-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

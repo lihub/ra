@@ -1,0 +1,526 @@
+{% extends "base.html" %}
+
+{% block title %}Methodology - How Quantica Works{% endblock %}
+
+{% block content %}
+<div class="methodology-container">
+    <div class="methodology-header">
+        <div class="container">
+            <h1>How Quantica Works</h1>
+            <p class="lead">Understanding the science behind intelligent portfolio optimization</p>
+        </div>
+    </div>
+
+    <div class="container methodology-content">
+        <section class="methodology-overview">
+            <h2>Mathematical Foundation</h2>
+            <p>Quantica is built on Modern Portfolio Theory (MPT), the Nobel Prize-winning framework developed by Harry Markowitz. Our platform combines decades of academic research with cutting-edge computational methods to create optimal portfolios for every risk tolerance.</p>
+            
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h3>🎯 Efficient Frontier</h3>
+                    <p>We calculate the mathematically optimal risk-return combinations across all possible portfolio allocations, ensuring you achieve maximum expected return for your chosen risk level.</p>
+                </div>
+                <div class="theory-card">
+                    <h3>📊 Covariance Optimization</h3>
+                    <p>Advanced correlation analysis between assets reduces portfolio volatility through intelligent diversification, lowering overall risk without sacrificing returns.</p>
+                </div>
+                <div class="theory-card">
+                    <h3>⚖️ Risk-Return Balance</h3>
+                    <p>Sharpe ratio optimization maximizes risk-adjusted returns, ensuring every unit of risk taken contributes meaningfully to portfolio performance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="optimization-process">
+            <h2>The Quantica Optimization Process</h2>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Risk Assessment & Goal Setting</h3>
+                        <p>Our sophisticated questionnaire evaluates your risk tolerance, investment timeline, and financial objectives using behavioral finance principles.</p>
+                        <ul>
+                            <li>10-point risk tolerance scale with psychological profiling</li>
+                            <li>Investment horizon adjustment (1-30 years)</li>
+                            <li>Liquidity and constraint analysis</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Asset Universe Selection</h3>
+                        <p>We curate a universe of 25+ high-quality ETFs spanning global markets, asset classes, and factors.</p>
+                        <ul>
+                            <li><strong>Equity Assets:</strong> US Large/Small Cap, International Developed, Emerging Markets</li>
+                            <li><strong>Fixed Income:</strong> Government bonds, Corporate bonds, International bonds</li>
+                            <li><strong>Alternative Assets:</strong> REITs, Commodities, Gold</li>
+                            <li><strong>Geographic Diversification:</strong> US, Europe, Asia-Pacific, Emerging Markets</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Mathematical Optimization</h3>
+                        <p>Advanced algorithms solve the quadratic optimization problem to find your personalized efficient frontier.</p>
+                        <div class="formula-box">
+                            <h4>Optimization Objective:</h4>
+                            <p><strong>Maximize:</strong> μᵀw - (λ/2)wᵀΣw</p>
+                            <p>Where μ = expected returns, w = weights, λ = risk aversion, Σ = covariance matrix</p>
+                        </div>
+                        <ul>
+                            <li>Quadratic programming for precise weight allocation</li>
+                            <li>Constraint handling (long-only, concentration limits)</li>
+                            <li>Robust optimization for parameter uncertainty</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Risk Analysis & Validation</h3>
+                        <p>Comprehensive backtesting and risk analysis ensure portfolio robustness across market cycles.</p>
+                        <ul>
+                            <li><strong>Historical Backtesting:</strong> 10+ years of simulated performance</li>
+                            <li><strong>Risk Metrics:</strong> VaR, CVaR, Maximum Drawdown, Sharpe/Sortino Ratios</li>
+                            <li><strong>Stress Testing:</strong> Performance during market crises</li>
+                            <li><strong>Factor Analysis:</strong> Exposure to market, size, value, momentum factors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-methodology">
+            <h2>Data & Research Foundation</h2>
+            
+            <div class="data-grid">
+                <div class="data-source">
+                    <h3>📈 Market Data</h3>
+                    <ul>
+                        <li>Daily price and volume data from leading providers</li>
+                        <li>10+ years of historical performance</li>
+                        <li>Real-time correlation calculations</li>
+                        <li>Economic indicator integration</li>
+                    </ul>
+                </div>
+                
+                <div class="data-source">
+                    <h3>🔬 Research Methods</h3>
+                    <ul>
+                        <li>Peer-reviewed academic literature integration</li>
+                        <li>Factor model implementation (Fama-French, Carhart)</li>
+                        <li>Behavioral finance insights</li>
+                        <li>Alternative risk measures</li>
+                    </ul>
+                </div>
+                
+                <div class="data-source">
+                    <h3>⚙️ Technology Stack</h3>
+                    <ul>
+                        <li>Python-based optimization engine</li>
+                        <li>CVXPY for convex optimization</li>
+                        <li>NumPy/SciPy for numerical computing</li>
+                        <li>Pandas for data manipulation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="performance-attribution">
+            <h2>Performance Attribution & Monitoring</h2>
+            <p>Understanding what drives your portfolio's performance is crucial for long-term success.</p>
+            
+            <div class="attribution-methods">
+                <div class="attribution-card">
+                    <h3>Factor Attribution</h3>
+                    <p>Decompose returns into systematic factors:</p>
+                    <ul>
+                        <li><strong>Market Beta:</strong> Sensitivity to broad market movements</li>
+                        <li><strong>Size Factor:</strong> Small vs. large company exposure</li>
+                        <li><strong>Value Factor:</strong> Value vs. growth stock tilt</li>
+                        <li><strong>Momentum:</strong> Trend-following component</li>
+                    </ul>
+                </div>
+                
+                <div class="attribution-card">
+                    <h3>Geographic Attribution</h3>
+                    <p>Track performance across regions:</p>
+                    <ul>
+                        <li>US Domestic Markets</li>
+                        <li>International Developed</li>
+                        <li>Emerging Markets</li>
+                        <li>Currency Effects</li>
+                    </ul>
+                </div>
+                
+                <div class="attribution-card">
+                    <h3>Asset Class Attribution</h3>
+                    <p>Understand sector contributions:</p>
+                    <ul>
+                        <li>Equity Performance</li>
+                        <li>Fixed Income Contribution</li>
+                        <li>Alternative Assets Impact</li>
+                        <li>Rebalancing Effects</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="rebalancing-methodology">
+            <h2>Intelligent Rebalancing</h2>
+            <p>Quantica employs sophisticated rebalancing strategies to maintain optimal portfolio allocations while minimizing transaction costs and tax implications.</p>
+            
+            <div class="rebalancing-approach">
+                <div class="rebalance-method">
+                    <h3>🎯 Threshold-Based Rebalancing</h3>
+                    <p>Automatic rebalancing when allocations drift beyond predefined tolerance bands (typically 5% for equity, 3% for bonds).</p>
+                </div>
+                <div class="rebalance-method">
+                    <h3>📅 Time-Based Review</h3>
+                    <p>Quarterly portfolio review with optimization refresh to incorporate new market data and correlation changes.</p>
+                </div>
+                <div class="rebalance-method">
+                    <h3>💰 Tax-Aware Optimization</h3>
+                    <p>Intelligent tax-loss harvesting and wash sale rule compliance to maximize after-tax returns.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="risk-management">
+            <h2>Risk Management Framework</h2>
+            
+            <div class="risk-controls">
+                <div class="risk-control">
+                    <h3>Position Limits</h3>
+                    <ul>
+                        <li>Maximum 40% allocation to any single asset class</li>
+                        <li>Minimum 5% allocation to preserve diversification</li>
+                        <li>Geographic concentration limits</li>
+                        <li>Currency exposure controls</li>
+                    </ul>
+                </div>
+                
+                <div class="risk-control">
+                    <h3>Volatility Management</h3>
+                    <ul>
+                        <li>Target volatility matching for risk tolerance</li>
+                        <li>Downside deviation optimization</li>
+                        <li>Maximum drawdown constraints</li>
+                        <li>Tail risk monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="risk-control">
+                    <h3>Stress Testing</h3>
+                    <ul>
+                        <li>2008 Financial Crisis scenario analysis</li>
+                        <li>COVID-19 market disruption testing</li>
+                        <li>Interest rate shock scenarios</li>
+                        <li>Geopolitical event simulations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="transparency">
+            <h2>Full Transparency</h2>
+            <p>Every aspect of our methodology is open and explainable. We believe in educated investors making informed decisions.</p>
+            
+            <div class="transparency-features">
+                <div class="transparency-item">
+                    <h3>📊 Open Source Calculations</h3>
+                    <p>All optimization formulas and risk calculations are fully documented and auditable.</p>
+                </div>
+                <div class="transparency-item">
+                    <h3>📈 Real-Time Analytics</h3>
+                    <p>Access to all portfolio metrics, attribution analysis, and performance decomposition.</p>
+                </div>
+                <div class="transparency-item">
+                    <h3>🔍 Decision Audit Trail</h3>
+                    <p>Complete history of all portfolio decisions, rebalancing actions, and optimization runs.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="methodology-cta">
+            <h2>Ready to Experience Intelligent Investing?</h2>
+            <p>See how our scientific approach can optimize your portfolio for your unique goals.</p>
+            <a href="/risk-assessment" class="cta-button">Build My Portfolio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<style>
+.methodology-container {
+    min-height: 100vh;
+    background: var(--background-color);
+}
+
+.methodology-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.methodology-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.methodology-header .lead {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.methodology-content {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    color: var(--text-primary);
+}
+
+.methodology-content section {
+    margin-bottom: 4rem;
+}
+
+.methodology-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.theory-card {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.theory-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.process-steps {
+    margin: 2rem 0;
+}
+
+.step {
+    display: flex;
+    margin-bottom: 3rem;
+    background: var(--surface-elevated);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 2rem;
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.step-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.step-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.formula-box {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.formula-box h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.data-source {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.data-source h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.data-source ul {
+    padding-left: 1.5rem;
+}
+
+.data-source li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.attribution-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.attribution-card {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.attribution-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.rebalancing-approach {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.rebalance-method {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.rebalance-method h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.risk-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.risk-control {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.risk-control h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.transparency-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.transparency-item {
+    background: var(--surface-elevated);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.transparency-item h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.methodology-cta {
+    text-align: center;
+    background: var(--surface-elevated);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    margin-top: 3rem;
+}
+
+.methodology-cta h2 {
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    .methodology-header h1 {
+        font-size: 2rem;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}

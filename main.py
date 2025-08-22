@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import uvicorn
 
-app = FastAPI(title="Roboadvisor", description="Portfolio Optimization Platform")
+app = FastAPI(title="Quantica", description="Intelligent Portfolio Optimization Platform")
 
 # Mount static files (CSS, JS, images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -23,6 +23,30 @@ async def home(request: Request):
 @app.get("/risk-assessment", response_class=HTMLResponse)
 async def risk_assessment(request: Request):
     return templates.TemplateResponse("risk_assessment.html", {"request": request})
+
+@app.get("/methodology", response_class=HTMLResponse)
+async def methodology(request: Request):
+    return templates.TemplateResponse("methodology.html", {"request": request})
+
+@app.get("/education", response_class=HTMLResponse)
+async def education(request: Request):
+    return templates.TemplateResponse("education.html", {"request": request})
+
+@app.get("/pricing", response_class=HTMLResponse)
+async def pricing(request: Request):
+    return templates.TemplateResponse("pricing.html", {"request": request})
+
+@app.get("/faq", response_class=HTMLResponse)
+async def faq(request: Request):
+    return templates.TemplateResponse("faq.html", {"request": request})
+
+@app.get("/legal/disclaimers", response_class=HTMLResponse)
+async def legal_disclaimers(request: Request):
+    return templates.TemplateResponse("legal/disclaimers.html", {"request": request})
+
+@app.get("/support", response_class=HTMLResponse)
+async def support(request: Request):
+    return templates.TemplateResponse("support.html", {"request": request})
 
 @app.post("/api/calculate-portfolio")
 async def calculate_portfolio(
