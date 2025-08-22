@@ -2,6 +2,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const riskSlider = document.getElementById('risk_level');
     const riskDescription = document.getElementById('risk-description');
+    const durationSlider = document.getElementById('investment_duration');
+    const durationValue = document.getElementById('duration-value');
+    const durationDescription = document.getElementById('duration-description');
     const riskForm = document.getElementById('risk-form');
     const portfolioResults = document.getElementById('portfolio-results');
     
@@ -19,10 +22,38 @@ document.addEventListener('DOMContentLoaded', function() {
         10: "Maximum Risk - Speculative investments, potential for large gains/losses"
     };
     
+    // Duration descriptions
+    const durationDescriptions = {
+        1: "Very short-term - Focus on capital preservation with minimal risk",
+        2: "Short-term - Conservative approach with stable, liquid investments",
+        5: "Medium-term - Balanced strategy allowing moderate growth potential",
+        10: "Medium-long term - Growth-oriented with time for market volatility",
+        15: "Long-term - Aggressive growth strategy leveraging compound returns",
+        20: "Very long-term - Maximum growth potential through equity exposure",
+        30: "Ultra long-term - Generational wealth building with high risk tolerance"
+    };
+
+    function getDurationDescription(years) {
+        if (years <= 2) return durationDescriptions[1];
+        if (years <= 4) return durationDescriptions[2];
+        if (years <= 7) return durationDescriptions[5];
+        if (years <= 12) return durationDescriptions[10];
+        if (years <= 18) return durationDescriptions[15];
+        if (years <= 25) return durationDescriptions[20];
+        return durationDescriptions[30];
+    }
+
     // Update risk description when slider changes
     riskSlider.addEventListener('input', function() {
         const level = parseInt(this.value);
         riskDescription.textContent = riskDescriptions[level];
+    });
+
+    // Update duration display when slider changes
+    durationSlider.addEventListener('input', function() {
+        const years = parseInt(this.value);
+        durationValue.textContent = years;
+        durationDescription.textContent = getDurationDescription(years);
     });
     
     // Handle form submission

@@ -13,6 +13,37 @@ The `/raw_data` folder contains historical data for various ETFs and indices:
 - Raw data files in `/raw_data` must NEVER be edited or modified
 - Always process raw data and save results to `/processed_data` folder
 - Raw data serves as the source of truth and must remain unchanged
+- Use `process_all_raw_data.py` to convert raw data to clean CSV files in `/processed_data`
+
+## Data Processing Status
+Successfully processed **19 asset classes** from raw data:
+
+### Equity Assets (11)
+- US_Large_Cap_SP500 (14.41% return, 17.49% vol, Sharpe 0.82)
+- NASDAQ_Total_Return (16.95% return, 21.33% vol, Sharpe 0.79) 
+- US_Small_Cap_Russell2000 (10.39% return, 22.31% vol, Sharpe 0.47)
+- Europe_MSCI (8.52% return, 15.92% vol, Sharpe 0.53)
+- Japan_MSCI (8.37% return, 18.59% vol, Sharpe 0.45)
+- Emerging_Markets_MSCI (6.30% return, 15.60% vol, Sharpe 0.40)
+- Germany_DAX (10.72% return, 19.51% vol, Sharpe 0.55)
+- France_CAC40 (9.34% return, 19.60% vol, Sharpe 0.48)
+- UK_FTSE100 (8.31% return, 15.02% vol, Sharpe 0.55)
+- India_NIFTY (12.65% return, 16.62% vol, Sharpe 0.76)
+
+### Bond Assets (2)
+- US_Gov_Bonds_3_7Y (-0.28% return, 3.97% vol, Sharpe -0.07)
+- US_Gov_Bonds_Short (62.78% return, 125.43% vol - DATA QUALITY ISSUE)
+
+### Currency Assets (5)  
+- USD_ILS_FX (-0.27% return, 7.67% vol, Sharpe -0.04)
+- EUR_ILS_FX (-1.45% return, 8.62% vol, Sharpe -0.17)
+- GBP_ILS_FX (-1.32% return, 9.42% vol, Sharpe -0.14)
+- JPY_ILS_FX (-2.81% return, 11.38% vol, Sharpe -0.25)
+- INR_ILS_FX (-4.11% return, 8.84% vol, Sharpe -0.46)
+
+### Commodity Assets (2)
+- Gold_Futures (8.33% return, 16.04% vol, Sharpe 0.52)
+- Oil_Brent_Futures (5.07% return, 35.05% vol, Sharpe 0.14)
 
 ### US Market ETFs
 - **S&P 500 TR** - S&P 500 Total Return index
