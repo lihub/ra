@@ -1,46 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}Methodology - How Quantica Works{% endblock %}
+{% block title %}{{ content.methodology('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="methodology-container">
     <div class="methodology-header">
         <div class="container">
-            <h1>How Quantica Works</h1>
-            <p class="lead">Understanding the science behind intelligent portfolio optimization</p>
+            <h1>{{ content.methodology('header_title') }}</h1>
+            <p class="lead">{{ content.methodology('header_subtitle') }}</p>
         </div>
     </div>
 
     <div class="container methodology-content">
         <section class="methodology-overview">
-            <h2>Mathematical Foundation</h2>
-            <p>Quantica is built on Modern Portfolio Theory (MPT), the Nobel Prize-winning framework developed by Harry Markowitz. Our platform combines decades of academic research with cutting-edge computational methods to create optimal portfolios for every risk tolerance.</p>
+            <h2>{{ content.methodology('foundation_title') }}</h2>
+            <p>{{ content.methodology('foundation_description') }}</p>
             
             <div class="theory-grid">
                 <div class="theory-card">
-                    <h3>🎯 Efficient Frontier</h3>
-                    <p>We calculate the mathematically optimal risk-return combinations across all possible portfolio allocations, ensuring you achieve maximum expected return for your chosen risk level.</p>
+                    <h3>{{ content.methodology('efficient_frontier_title') }}</h3>
+                    <p>{{ content.methodology('efficient_frontier_description') }}</p>
                 </div>
                 <div class="theory-card">
-                    <h3>📊 Covariance Optimization</h3>
-                    <p>Advanced correlation analysis between assets reduces portfolio volatility through intelligent diversification, lowering overall risk without sacrificing returns.</p>
+                    <h3>{{ content.methodology('covariance_title') }}</h3>
+                    <p>{{ content.methodology('covariance_description') }}</p>
                 </div>
                 <div class="theory-card">
-                    <h3>⚖️ Risk-Return Balance</h3>
-                    <p>Sharpe ratio optimization maximizes risk-adjusted returns, ensuring every unit of risk taken contributes meaningfully to portfolio performance.</p>
+                    <h3>{{ content.methodology('risk_return_title') }}</h3>
+                    <p>{{ content.methodology('risk_return_description') }}</p>
                 </div>
             </div>
         </section>
 
         <section class="optimization-process">
-            <h2>The Quantica Optimization Process</h2>
+            <h2>{{ content.methodology('process_title') }}</h2>
             
             <div class="process-steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Risk Assessment & Goal Setting</h3>
-                        <p>Our sophisticated questionnaire evaluates your risk tolerance, investment timeline, and financial objectives using behavioral finance principles.</p>
+                        <h3>{{ content.methodology('step1_title') }}</h3>
+                        <p>{{ content.methodology('step1_description') }}</p>
                         <ul>
                             <li>10-point risk tolerance scale with psychological profiling</li>
                             <li>Investment horizon adjustment (1-30 years)</li>
@@ -52,8 +52,8 @@
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Asset Universe Selection</h3>
-                        <p>We curate a universe of 25+ high-quality ETFs spanning global markets, asset classes, and factors.</p>
+                        <h3>{{ content.methodology('step2_title') }}</h3>
+                        <p>{{ content.methodology('step2_description') }}</p>
                         <ul>
                             <li><strong>Equity Assets:</strong> US Large/Small Cap, International Developed, Emerging Markets</li>
                             <li><strong>Fixed Income:</strong> Government bonds, Corporate bonds, International bonds</li>
@@ -66,8 +66,8 @@
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Mathematical Optimization</h3>
-                        <p>Advanced algorithms solve the quadratic optimization problem to find your personalized efficient frontier.</p>
+                        <h3>{{ content.methodology('step3_title') }}</h3>
+                        <p>{{ content.methodology('step3_description') }}</p>
                         <div class="formula-box">
                             <h4>Optimization Objective:</h4>
                             <p><strong>Maximize:</strong> μᵀw - (λ/2)wᵀΣw</p>
@@ -84,8 +84,8 @@
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Risk Analysis & Validation</h3>
-                        <p>Comprehensive backtesting and risk analysis ensure portfolio robustness across market cycles.</p>
+                        <h3>{{ content.methodology('step4_title') }}</h3>
+                        <p>{{ content.methodology('step4_description') }}</p>
                         <ul>
                             <li><strong>Historical Backtesting:</strong> 10+ years of simulated performance</li>
                             <li><strong>Risk Metrics:</strong> VaR, CVaR, Maximum Drawdown, Sharpe/Sortino Ratios</li>
@@ -98,7 +98,7 @@
         </section>
 
         <section class="data-methodology">
-            <h2>Data & Research Foundation</h2>
+            <h2>{{ content.methodology('data_title') }}</h2>
             
             <div class="data-grid">
                 <div class="data-source">
@@ -134,8 +134,8 @@
         </section>
 
         <section class="performance-attribution">
-            <h2>Performance Attribution & Monitoring</h2>
-            <p>Understanding what drives your portfolio's performance is crucial for long-term success.</p>
+            <h2>{{ content.methodology('attribution_title') }}</h2>
+            <p>{{ content.methodology('attribution_description') }}</p>
             
             <div class="attribution-methods">
                 <div class="attribution-card">
@@ -174,8 +174,8 @@
         </section>
 
         <section class="rebalancing-methodology">
-            <h2>Intelligent Rebalancing</h2>
-            <p>Quantica employs sophisticated rebalancing strategies to maintain optimal portfolio allocations while minimizing transaction costs and tax implications.</p>
+            <h2>{{ content.methodology('rebalancing_title') }}</h2>
+            <p>{{ content.methodology('rebalancing_description') }}</p>
             
             <div class="rebalancing-approach">
                 <div class="rebalance-method">
@@ -194,7 +194,7 @@
         </section>
 
         <section class="risk-management">
-            <h2>Risk Management Framework</h2>
+            <h2>{{ content.methodology('risk_management_title') }}</h2>
             
             <div class="risk-controls">
                 <div class="risk-control">
@@ -230,8 +230,8 @@
         </section>
 
         <section class="transparency">
-            <h2>Full Transparency</h2>
-            <p>Every aspect of our methodology is open and explainable. We believe in educated investors making informed decisions.</p>
+            <h2>{{ content.methodology('transparency_title') }}</h2>
+            <p>{{ content.methodology('transparency_description') }}</p>
             
             <div class="transparency-features">
                 <div class="transparency-item">
@@ -250,9 +250,9 @@
         </section>
 
         <div class="methodology-cta">
-            <h2>Ready to Experience Intelligent Investing?</h2>
-            <p>See how our scientific approach can optimize your portfolio for your unique goals.</p>
-            <a href="/risk-assessment" class="cta-button">Build My Portfolio</a>
+            <h2>{{ content.methodology('cta_title') }}</h2>
+            <p>{{ content.methodology('cta_description') }}</p>
+            <a href="/risk-assessment" class="cta-button">{{ content.methodology('cta_button') }}</a>
         </div>
     </div>
 </div>

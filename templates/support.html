@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Support & Contact - Quantica{% endblock %}
+{% block title %}{{ content.support('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="support-container">
     <div class="support-header">
         <div class="container">
-            <h1>We're Here to Help</h1>
-            <p class="lead">Get the support you need to make the most of your Quantica investment experience</p>
+            <h1>{{ content.support('header_title') }}</h1>
+            <p class="lead">{{ content.support('header_subtitle') }}</p>
         </div>
     </div>
 
@@ -15,19 +15,19 @@
         
         <!-- Quick Help Section -->
         <section class="quick-help">
-            <h2>Get Help Fast</h2>
+            <h2>{{ content.support('contact_methods_title') }}</h2>
             <div class="help-options">
                 <div class="help-option">
                     <div class="help-icon">❓</div>
-                    <h3>Frequently Asked Questions</h3>
-                    <p>Find answers to common questions about investing, fees, performance, and account management.</p>
-                    <a href="/faq" class="help-btn">Browse FAQ</a>
+                    <h3>{{ content.support('check_faq_title') }}</h3>
+                    <p>{{ content.support('check_faq_description') }}</p>
+                    <a href="/faq" class="help-btn">{{ content.support('view_faq_button') }}</a>
                 </div>
                 
                 <div class="help-option">
                     <div class="help-icon">📚</div>
-                    <h3>Education Hub</h3>
-                    <p>Learn about investing fundamentals, Modern Portfolio Theory, and advanced strategies.</p>
+                    <h3>{{ content.support('documentation_title') }}</h3>
+                    <p>{{ content.support('documentation_description') }}</p>
                     <a href="/education" class="help-btn">Start Learning</a>
                 </div>
                 

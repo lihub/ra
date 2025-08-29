@@ -1,69 +1,69 @@
 {% extends "base.html" %}
 
-{% block title %}{{ _("Quantica - Intelligent Portfolio Optimization") }}{% endblock %}
+{% block title %}{{ content.home('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="hero">
     <div class="hero-content">
-        <h1>{{ _("Quantica") }}</h1>
-        <h2 class="hero-tagline">{{ _("Intelligent Portfolio Optimization") }}</h2>
+        <h1>{{ content.home('hero_title') }}</h1>
+        <h2 class="hero-tagline">{{ content.home('hero_tagline') }}</h2>
         <p class="hero-subtitle">
-            {{ _("Institutional-grade investment strategies powered by advanced mathematics. Build wealth through diversified global portfolios optimized for your risk tolerance and time horizon.") }}
+            {{ content.home('hero_subtitle') }}
         </p>
         <div class="hero-stats">
             <div class="stat">
-                <h3>25+</h3>
-                <p>{{ _("Global Assets") }}</p>
+                <h3>{{ content.home('stat1_number') }}</h3>
+                <p>{{ content.home('stat1_label') }}</p>
             </div>
             <div class="stat">
-                <h3>0.25%</h3>
-                <p>{{ _("Annual Fee") }}</p>
+                <h3>{{ content.home('stat2_number') }}</h3>
+                <p>{{ content.home('stat2_label') }}</p>
             </div>
             <div class="stat">
-                <h3>8.4%</h3>
-                <p>{{ _("Avg. Portfolio Return") }}</p>
+                <h3>{{ content.home('stat3_number') }}</h3>
+                <p>{{ content.home('stat3_label') }}</p>
             </div>
         </div>
         <div class="cta-buttons">
-            <a href="/risk-assessment" class="cta-button primary">{{ _("Build My Portfolio") }}</a>
-            <a href="/methodology" class="cta-button secondary">{{ _("How It Works") }}</a>
+            <a href="/risk-assessment" class="cta-button primary">{{ content.home('button1') }}</a>
+            <a href="/methodology" class="cta-button secondary">{{ content.home('button2') }}</a>
         </div>
     </div>
 </div>
 
 <section class="features">
     <div class="container">
-        <h2>{{ _("Why Choose Quantica?") }}</h2>
+        <h2>{{ content.home('features_title') }}</h2>
         <div class="features-grid">
             <div class="feature">
                 <div class="feature-icon">🎯</div>
-                <h3>{{ _("Risk-Optimized Portfolios") }}</h3>
-                <p>{{ _("Advanced optimization algorithms create portfolios tailored to your specific risk tolerance and investment timeline") }}</p>
+                <h3>{{ content.home('feature1_title') }}</h3>
+                <p>{{ content.home('feature1_description') }}</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🌍</div>
-                <h3>{{ _("Global Diversification") }}</h3>
-                <p>{{ _("Access 25+ carefully selected ETFs spanning US, European, Asian, and emerging markets plus bonds and commodities") }}</p>
+                <h3>{{ content.home('feature2_title') }}</h3>
+                <p>{{ content.home('feature2_description') }}</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">📊</div>
-                <h3>{{ _("Transparent Analytics") }}</h3>
-                <p>{{ _("Comprehensive performance tracking with historical backtesting, risk metrics, and clear explanations of investment decisions") }}</p>
+                <h3>{{ content.home('feature3_title') }}</h3>
+                <p>{{ content.home('feature3_description') }}</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🧠</div>
-                <h3>{{ _("Modern Portfolio Theory") }}</h3>
-                <p>{{ _("Nobel Prize-winning investment framework with mathematical precision to maximize returns for your chosen risk level") }}</p>
+                <h3>{{ content.home('feature4_title') }}</h3>
+                <p>{{ content.home('feature4_description') }}</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">⚡</div>
-                <h3>{{ _("Intelligent Rebalancing") }}</h3>
-                <p>{{ _("Automated portfolio maintenance to keep your investments aligned with optimal allocations") }}</p>
+                <h3>{{ content.home('feature5_title') }}</h3>
+                <p>{{ content.home('feature5_description') }}</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🎓</div>
-                <h3>{{ _("Educational Resources") }}</h3>
-                <p>{{ _("Learn about investing with comprehensive guides, market insights, and strategy explanations") }}</p>
+                <h3>{{ content.home('feature6_title') }}</h3>
+                <p>{{ content.home('feature6_description') }}</p>
             </div>
         </div>
     </div>

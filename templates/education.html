@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}Education Hub - Learn Intelligent Investing{% endblock %}
+{% block title %}{{ content.education('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="education-container">
     <div class="education-header">
         <div class="container">
-            <h1>Quantica Education Hub</h1>
-            <p class="lead">Master the art and science of intelligent investing</p>
+            <h1>{{ content.education('header_title') }}</h1>
+            <p class="lead">{{ content.education('header_subtitle') }}</p>
             <div class="learning-paths">
-                <button class="path-button active" data-level="beginner">New to Investing</button>
-                <button class="path-button" data-level="intermediate">Growing Knowledge</button>
-                <button class="path-button" data-level="advanced">Expert Insights</button>
+                <button class="path-button active" data-level="beginner">{{ content.education('beginner_button') }}</button>
+                <button class="path-button" data-level="intermediate">{{ content.education('intermediate_button') }}</button>
+                <button class="path-button" data-level="advanced">{{ content.education('advanced_button') }}</button>
             </div>
         </div>
     </div>
@@ -21,13 +21,13 @@
         <!-- Beginner Path -->
         <div class="learning-path active" id="beginner-path">
             <div class="path-intro">
-                <h2>🌱 New to Investing</h2>
-                <p>Start your investment journey with solid fundamentals. Learn the core concepts that every successful investor needs to know.</p>
+                <h2>{{ content.education('beginner_path_title') }}</h2>
+                <p>{{ content.education('beginner_path_description') }}</p>
             </div>
 
             <div class="topics-grid">
                 <div class="topic-card">
-                    <h3>💰 Investment Basics</h3>
+                    <h3>{{ content.education('investment_basics_title') }}</h3>
                     <div class="topic-content">
                         <h4>What is Investing?</h4>
                         <p>Investing means putting your money to work to generate returns over time. Instead of keeping money in low-yield savings accounts, investing helps your wealth grow through:</p>

@@ -3,28 +3,24 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import uvicorn
-from i18n import get_language_context, set_language_in_jinja, i18n
+from content_loader import content_loader, LANGUAGES
 
 app = FastAPI(title="Quantica", description="Intelligent Portfolio Optimization Platform")
 
 # Mount static files (CSS, JS, images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Templates with i18n support
+# Templates
 templates = Jinja2Templates(directory="templates")
-i18n.setup_jinja_env(templates.env)
 
 def render_template(request: Request, template_name: str, context: dict = None):
-    """Helper function to render templates with i18n support"""
+    """Helper function to render templates with content support"""
     if context is None:
         context = {}
     
-    # Get language context
-    lang_context = get_language_context(request)
+    # Get language and content context
+    lang_context = content_loader.get_language_context(request)
     context.update(lang_context)
-    
-    # Set language in Jinja2
-    set_language_in_jinja(templates.env, lang_context['current_language'])
     
     # Add request to context
     context['request'] = request
@@ -39,7 +35,7 @@ async def health():
 async def set_language(request: Request, lang: str, redirect_to: str = "/"):
     """Set language preference and redirect"""
     response = HTMLResponse(content="<script>window.location.href='" + redirect_to + "';</script>")
-    if lang in i18n.translations:
+    if lang in LANGUAGES:
         response.set_cookie(key="language", value=lang, max_age=30*24*60*60)  # 30 days
     return response
 

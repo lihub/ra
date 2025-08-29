@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Pricing - Transparent Fee Structure{% endblock %}
+{% block title %}{{ content.pricing('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="pricing-container">
     <div class="pricing-header">
         <div class="container">
-            <h1>Transparent Pricing</h1>
-            <p class="lead">No hidden fees. No complicated structures. Just intelligent investing at a fair price.</p>
+            <h1>{{ content.pricing('header_title') }}</h1>
+            <p class="lead">{{ content.pricing('header_subtitle') }}</p>
         </div>
     </div>
 
@@ -15,11 +15,11 @@
         
         <section class="main-pricing">
             <div class="pricing-card featured">
-                <div class="pricing-badge">Most Popular</div>
-                <h2>Quantica Portfolio Management</h2>
+                <div class="pricing-badge">{{ content.pricing('popular_badge') }}</div>
+                <h2>{{ content.pricing('main_plan_title') }}</h2>
                 <div class="price">
-                    <span class="price-amount">0.25%</span>
-                    <span class="price-period">annual management fee</span>
+                    <span class="price-amount">{{ content.pricing('main_plan_price') }}</span>
+                    <span class="price-period">{{ content.pricing('main_plan_period') }}</span>
                 </div>
                 <div class="price-details">
                     <p>$25 per year on a $10,000 portfolio</p>
@@ -28,15 +28,15 @@
                 <div class="features-list">
                     <div class="feature-item">
                         <span class="check">✓</span>
-                        <span>Intelligent portfolio optimization</span>
+                        <span>{{ content.pricing('feature_1') }}</span>
                     </div>
                     <div class="feature-item">
                         <span class="check">✓</span>
-                        <span>Automatic rebalancing</span>
+                        <span>{{ content.pricing('feature_2') }}</span>
                     </div>
                     <div class="feature-item">
                         <span class="check">✓</span>
-                        <span>Real-time performance tracking</span>
+                        <span>{{ content.pricing('feature_3') }}</span>
                     </div>
                     <div class="feature-item">
                         <span class="check">✓</span>

@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}Frequently Asked Questions - Quantica{% endblock %}
+{% block title %}{{ content.faq('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="faq-container">
     <div class="faq-header">
         <div class="container">
-            <h1>Frequently Asked Questions</h1>
-            <p class="lead">Get answers to common questions about Quantica's intelligent portfolio optimization</p>
+            <h1>{{ content.faq('header_title') }}</h1>
+            <p class="lead">{{ content.faq('header_subtitle') }}</p>
         </div>
     </div>
 
     <div class="container faq-content">
         
         <div class="faq-categories">
-            <button class="category-btn active" data-category="getting-started">Getting Started</button>
-            <button class="category-btn" data-category="investment-process">Investment Process</button>
-            <button class="category-btn" data-category="fees-costs">Fees & Costs</button>
-            <button class="category-btn" data-category="performance">Performance</button>
-            <button class="category-btn" data-category="security">Security & Safety</button>
-            <button class="category-btn" data-category="technical">Technical</button>
+            <button class="category-btn active" data-category="getting-started">{{ content.faq('getting_started_title') }}</button>
+            <button class="category-btn" data-category="investment-process">{{ content.faq('investment_process_title') }}</button>
+            <button class="category-btn" data-category="fees-costs">{{ content.faq('fees_and_costs_title') }}</button>
+            <button class="category-btn" data-category="performance">{{ content.faq('performance_title') }}</button>
+            <button class="category-btn" data-category="security">{{ content.faq('security_and_safety_title') }}</button>
+            <button class="category-btn" data-category="technical">{{ content.faq('technical_title') }}</button>
         </div>
 
         <!-- Getting Started -->
         <div class="faq-category active" id="getting-started">
-            <h2>🚀 Getting Started</h2>
+            <h2>{{ content.faq('getting_started_title') }}</h2>
             
             <div class="faq-item">
                 <div class="faq-question">

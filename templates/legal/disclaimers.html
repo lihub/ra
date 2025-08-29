@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}Legal Disclaimers - Quantica{% endblock %}
+{% block title %}{{ content.legal_disclaimers('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="legal-container">
     <div class="legal-header">
         <div class="container">
-            <h1>Legal Disclaimers & Risk Disclosures</h1>
-            <p class="lead">Important information about investment risks and regulatory compliance</p>
-            <div class="last-updated">Last Updated: January 2025</div>
+            <h1>{{ content.legal_disclaimers('header_title') }}</h1>
+            <p class="lead">{{ content.legal_disclaimers('header_subtitle') }}</p>
+            <div class="last-updated">{{ content.legal_disclaimers('last_updated') }}</div>
         </div>
     </div>
 
     <div class="container legal-content">
         
         <section class="disclaimer-section">
-            <h2>🚨 Important Risk Disclosures</h2>
+            <h2>{{ content.legal_disclaimers('risk_warnings_title') }}</h2>
             
             <div class="risk-warning">
                 <div class="warning-icon">⚠️</div>
                 <div class="warning-content">
-                    <h3>Investment Risk</h3>
-                    <p><strong>All investments involve risk, including the potential loss of principal.</strong> Past performance does not guarantee future results. The value of your investment will fluctuate and you may lose money.</p>
+                    <h3>{{ content.legal_disclaimers('investment_disclaimer_title') }}</h3>
+                    <p>{{ content.legal_disclaimers('investment_disclaimer_content') }}</p>
                 </div>
             </div>
 
             <div class="risk-categories">
                 <div class="risk-category">
-                    <h3>Market Risk</h3>
+                    <h3>{{ content.legal_disclaimers('market_risk_title') }}</h3>
                     <p>The risk that the entire market will decline, affecting the value of individual securities regardless of their specific performance. Market downturns can result in significant portfolio losses.</p>
                     <ul>
                         <li>Economic recessions and market corrections</li>
