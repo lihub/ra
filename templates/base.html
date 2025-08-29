@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ current_language }}" dir="{{ dir }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Quantica - Intelligent Investing{% endblock %}</title>
+    <title>{% block title %}{{ _("Quantica - Intelligent Investing") }}{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,14 +14,32 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <h1><a href="/">Quantica</a></h1>
+            <h1><a href="/">{{ _("Quantica") }}</a></h1>
             <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/methodology">How It Works</a></li>
-                <li><a href="/education">Learn</a></li>
-                <li><a href="/pricing">Pricing</a></li>
-                <li><a href="/risk-assessment">Get Started</a></li>
+                <li><a href="/">{{ _("Home") }}</a></li>
+                <li><a href="/methodology">{{ _("How It Works") }}</a></li>
+                <li><a href="/education">{{ _("Learn") }}</a></li>
+                <li><a href="/pricing">{{ _("Pricing") }}</a></li>
+                <li><a href="/risk-assessment">{{ _("Get Started") }}</a></li>
             </ul>
+            
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button class="lang-button" onclick="toggleLanguageMenu()">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text">{{ languages[current_language] }}</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    {% for lang_code, lang_name in languages.items() %}
+                        {% if lang_code != current_language %}
+                            <a href="/set-language?lang={{ lang_code }}&redirect_to={{ request.url }}" class="lang-option">
+                                {{ lang_name }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -32,36 +50,36 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Quantica</h4>
-                <p>Intelligent portfolio optimization powered by Modern Portfolio Theory</p>
+                <h4>{{ _("Quantica") }}</h4>
+                <p>{{ _("Intelligent portfolio optimization powered by Modern Portfolio Theory") }}</p>
             </div>
             <div class="footer-section">
-                <h4>Platform</h4>
+                <h4>{{ _("Platform") }}</h4>
                 <ul>
-                    <li><a href="/methodology">How It Works</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="/performance">Performance</a></li>
+                    <li><a href="/methodology">{{ _("How It Works") }}</a></li>
+                    <li><a href="/pricing">{{ _("Pricing") }}</a></li>
+                    <li><a href="/performance">{{ _("Performance") }}</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Resources</h4>
+                <h4>{{ _("Resources") }}</h4>
                 <ul>
-                    <li><a href="/education">Education Hub</a></li>
-                    <li><a href="/research">Market Research</a></li>
-                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/education">{{ _("Education Hub") }}</a></li>
+                    <li><a href="/research">{{ _("Market Research") }}</a></li>
+                    <li><a href="/faq">{{ _("FAQ") }}</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Legal</h4>
+                <h4>{{ _("Legal") }}</h4>
                 <ul>
-                    <li><a href="/legal/disclaimers">Disclaimers</a></li>
-                    <li><a href="/legal/privacy">Privacy Policy</a></li>
-                    <li><a href="/support">Contact</a></li>
+                    <li><a href="/legal/disclaimers">{{ _("Disclaimers") }}</a></li>
+                    <li><a href="/legal/privacy">{{ _("Privacy Policy") }}</a></li>
+                    <li><a href="/support">{{ _("Contact") }}</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Quantica. Intelligent investing for the digital age.</p>
+            <p>{{ _("© 2025 Quantica. Intelligent investing for the digital age.") }}</p>
         </div>
     </footer>
 

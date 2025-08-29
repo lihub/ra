@@ -1,81 +1,81 @@
 {% extends "base.html" %}
 
-{% block title %}Portfolio Builder - Quantica{% endblock %}
+{% block title %}{{ _("Portfolio Builder - Quantica") }}{% endblock %}
 
 {% block content %}
 <div class="assessment-container">
     <div class="assessment-header">
-        <h1>Build Your Quantica Portfolio</h1>
-        <p>Answer a few questions to create your personalized, optimized investment strategy</p>
+        <h1>{{ _("Build Your Quantica Portfolio") }}</h1>
+        <p>{{ _("Answer a few questions to create your personalized, optimized investment strategy") }}</p>
     </div>
 
     <form id="risk-form" class="risk-form">
         <div class="form-section">
-            <h3>Investment Amount</h3>
+            <h3>{{ _("Investment Amount") }}</h3>
             <div class="input-group">
-                <label for="investment_amount">How much would you like to invest?</label>
+                <label for="investment_amount">{{ _("How much would you like to invest?") }}</label>
                 <input type="number" id="investment_amount" name="investment_amount" 
                        min="1000" step="1000" value="10000" required>
-                <span class="currency">USD</span>
+                <span class="currency">{{ _("USD") }}</span>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>Risk Tolerance</h3>
+            <h3>{{ _("Risk Tolerance") }}</h3>
             <div class="risk-slider-container">
-                <label for="risk_level">Select your risk level:</label>
+                <label for="risk_level">{{ _("Select your risk level:") }}</label>
                 <input type="range" id="risk_level" name="risk_level" 
                        min="1" max="10" value="5" class="risk-slider">
                 <div class="risk-labels">
-                    <span>Conservative (1)</span>
-                    <span>Moderate (5)</span>
-                    <span>Aggressive (10)</span>
+                    <span>{{ _("Conservative (1)") }}</span>
+                    <span>{{ _("Moderate (5)") }}</span>
+                    <span>{{ _("Aggressive (10)") }}</span>
                 </div>
                 <div class="risk-description" id="risk-description">
-                    Moderate risk tolerance - Balanced approach between growth and stability
+                    {{ _("Moderate risk tolerance - Balanced approach between growth and stability") }}
                 </div>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>Investment Duration</h3>
+            <h3>{{ _("Investment Duration") }}</h3>
             <div class="duration-slider-container">
-                <label for="investment_duration">How long do you plan to invest? (years)</label>
+                <label for="investment_duration">{{ _("How long do you plan to invest? (years)") }}</label>
                 <input type="range" id="investment_duration" name="investment_duration" 
                        min="1" max="30" value="10" class="duration-slider">
                 <div class="duration-display">
-                    <span id="duration-value">10</span> years
+                    <span id="duration-value">10</span> {{ _("years") }}
                 </div>
                 <div class="duration-labels">
-                    <span>1 year</span>
-                    <span>15 years</span>
-                    <span>30 years</span>
+                    <span>1 {{ _("years") }}</span>
+                    <span>15 {{ _("years") }}</span>
+                    <span>30 {{ _("years") }}</span>
                 </div>
                 <div class="duration-description" id="duration-description">
-                    Medium-term investment horizon allowing for balanced growth strategy
+                    {{ _("Medium-term investment horizon allowing for balanced growth strategy") }}
                 </div>
             </div>
         </div>
 
         <button type="submit" class="submit-button">
-            Create My Quantica Portfolio
+            {{ _("Create My Quantica Portfolio") }}
         </button>
     </form>
 
     <div id="portfolio-results" class="portfolio-results hidden">
-        <h2>Your Optimized Portfolio</h2>
+        <h2>{{ _("Your Optimized Portfolio") }}</h2>
         <div class="portfolio-summary">
             <div class="summary-stats">
                 <div class="stat">
-                    <h4>Expected Annual Return</h4>
+                    <h4>{{ _("Expected Annual Return") }}</h4>
                     <span id="expected-return">-</span>
                 </div>
                 <div class="stat">
-                    <h4>Portfolio Volatility</h4>
+                    <h4>{{ _("Portfolio Volatility") }}</h4>
                     <span id="volatility">-</span>
                 </div>
                 <div class="stat">
-                    <h4>Sharpe Ratio</h4>
+                    <h4>{{ _("Sharpe Ratio") }}</h4>
                     <span id="sharpe-ratio">-</span>
                 </div>
             </div>

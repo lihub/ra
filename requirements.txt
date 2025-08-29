@@ -1,7 +1,8 @@
 fastapi
 uvicorn
-jinja2
+jinja2[i18n]
 python-multipart
+babel
 numpy
 pandas
 scipy

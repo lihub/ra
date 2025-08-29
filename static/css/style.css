@@ -67,6 +67,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 64px;
+    position: relative;
 }
 
 .navbar h1 a {
@@ -91,6 +92,155 @@ body {
 
 .nav-menu a:hover {
     color: var(--primary-color);
+}
+
+/* Language Toggle Styles */
+.language-toggle {
+    position: relative;
+    margin-left: 2rem;
+}
+
+[dir="rtl"] .language-toggle {
+    margin-left: 0;
+    margin-right: 2rem;
+}
+
+.lang-button {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.lang-button:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.lang-icon {
+    font-size: 1rem;
+}
+
+.dropdown-arrow {
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    min-width: 120px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
+.lang-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.lang-option:last-child {
+    border-bottom: none;
+}
+
+.lang-option:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .nav-menu {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-container {
+    flex-direction: row-reverse;
+}
+
+/* Hebrew Font Support */
+[dir="rtl"] body,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] p,
+[dir="rtl"] a,
+[dir="rtl"] button,
+[dir="rtl"] input,
+[dir="rtl"] select,
+[dir="rtl"] textarea {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Hebrew', 'Noto Sans Hebrew', Arial, sans-serif;
+}
+
+/* RTL Layout Adjustments */
+[dir="rtl"] .cta-buttons {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .features-grid {
+    text-align: right;
+}
+
+[dir="rtl"] .hero-stats {
+    text-align: center;
+}
+
+[dir="rtl"] .feature {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-content {
+    text-align: right;
+}
+
+[dir="rtl"] ul {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] .assessment-container {
+    text-align: right;
+}
+
+[dir="rtl"] .form-section {
+    text-align: right;
 }
 
 /* Main Content */

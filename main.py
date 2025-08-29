@@ -1,52 +1,79 @@
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, Response
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import uvicorn
+from i18n import get_language_context, set_language_in_jinja, i18n
 
 app = FastAPI(title="Quantica", description="Intelligent Portfolio Optimization Platform")
 
 # Mount static files (CSS, JS, images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Templates
+# Templates with i18n support
 templates = Jinja2Templates(directory="templates")
+i18n.setup_jinja_env(templates.env)
+
+def render_template(request: Request, template_name: str, context: dict = None):
+    """Helper function to render templates with i18n support"""
+    if context is None:
+        context = {}
+    
+    # Get language context
+    lang_context = get_language_context(request)
+    context.update(lang_context)
+    
+    # Set language in Jinja2
+    set_language_in_jinja(templates.env, lang_context['current_language'])
+    
+    # Add request to context
+    context['request'] = request
+    
+    return templates.TemplateResponse(template_name, context)
 
 @app.get("/health")
 async def health():
     return {"status": "ok"}
 
+@app.get("/set-language")
+async def set_language(request: Request, lang: str, redirect_to: str = "/"):
+    """Set language preference and redirect"""
+    response = HTMLResponse(content="<script>window.location.href='" + redirect_to + "';</script>")
+    if lang in i18n.translations:
+        response.set_cookie(key="language", value=lang, max_age=30*24*60*60)  # 30 days
+    return response
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return render_template(request, "index.html")
 
 @app.get("/risk-assessment", response_class=HTMLResponse)
 async def risk_assessment(request: Request):
-    return templates.TemplateResponse("risk_assessment.html", {"request": request})
+    return render_template(request, "risk_assessment.html")
 
 @app.get("/methodology", response_class=HTMLResponse)
 async def methodology(request: Request):
-    return templates.TemplateResponse("methodology.html", {"request": request})
+    return render_template(request, "methodology.html")
 
 @app.get("/education", response_class=HTMLResponse)
 async def education(request: Request):
-    return templates.TemplateResponse("education.html", {"request": request})
+    return render_template(request, "education.html")
 
 @app.get("/pricing", response_class=HTMLResponse)
 async def pricing(request: Request):
-    return templates.TemplateResponse("pricing.html", {"request": request})
+    return render_template(request, "pricing.html")
 
 @app.get("/faq", response_class=HTMLResponse)
 async def faq(request: Request):
-    return templates.TemplateResponse("faq.html", {"request": request})
+    return render_template(request, "faq.html")
 
 @app.get("/legal/disclaimers", response_class=HTMLResponse)
 async def legal_disclaimers(request: Request):
-    return templates.TemplateResponse("legal/disclaimers.html", {"request": request})
+    return render_template(request, "legal/disclaimers.html")
 
 @app.get("/support", response_class=HTMLResponse)
 async def support(request: Request):
-    return templates.TemplateResponse("support.html", {"request": request})
+    return render_template(request, "support.html")
 
 @app.post("/api/calculate-portfolio")
 async def calculate_portfolio(

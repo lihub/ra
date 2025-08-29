@@ -101,6 +101,22 @@ Successfully processed **19 asset classes** from raw data:
 - **Low fees** - Competitive with market leaders (0.25-0.50% annually)
 - **Educational content** - Help users understand their investments
 
+## Current Tech Stack
+**IMPORTANT: Always check the actual codebase before making assumptions about the tech stack**
+
+- **Backend**: FastAPI (Python) - main.py contains the web server
+- **Frontend**: Jinja2 templates + static CSS/JS (server-side rendering)
+- **Data Processing**: Python scripts for portfolio optimization
+- **Deployment**: Railway hosting (Procfile indicates container deployment)
+- **Data Storage**: CSV files for processed data, pickle files for caching
+
+**Key Files:**
+- `main.py` - FastAPI application with routes
+- `templates/` - Jinja2 HTML templates
+- `static/` - CSS and JavaScript files  
+- `portfolio/` - Portfolio optimization engine
+- `processed_data/` - Clean CSV data files
+
 ## Code Quality Standards
 - **Clean and maintainable** - Code should be easy to understand and modify
 - **Well-tested** - Portfolio calculations need to be accurate
