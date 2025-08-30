@@ -22,81 +22,81 @@
 
         <!-- KYC Questions -->
         <div class="kyc-questions">
-            <h3>Risk Assessment Questionnaire</h3>
-            <p>Please answer the following questions to help us determine your optimal investment strategy.</p>
+            <h3>{{ content.risk_assessment('kyc_title') }}</h3>
+            <p>{{ content.risk_assessment('kyc_subtitle') }}</p>
             
             <!-- Question 1: Time Horizon -->
             <div class="question-group">
-                <h4>1. When do you expect to need the invested money?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_1_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="horizon_score" value="0" required> Within 1 year</label>
-                    <label><input type="radio" name="horizon_score" value="20"> 1-3 years</label>
-                    <label><input type="radio" name="horizon_score" value="50"> 4-7 years</label>
-                    <label><input type="radio" name="horizon_score" value="75"> 8-15 years</label>
-                    <label><input type="radio" name="horizon_score" value="100"> Over 15 years</label>
+                    <label><input type="radio" name="horizon_score" value="0" required> {{ content.risk_assessment('kyc_question_1_option_1') }}</label>
+                    <label><input type="radio" name="horizon_score" value="20"> {{ content.risk_assessment('kyc_question_1_option_2') }}</label>
+                    <label><input type="radio" name="horizon_score" value="50"> {{ content.risk_assessment('kyc_question_1_option_3') }}</label>
+                    <label><input type="radio" name="horizon_score" value="75"> {{ content.risk_assessment('kyc_question_1_option_4') }}</label>
+                    <label><input type="radio" name="horizon_score" value="100"> {{ content.risk_assessment('kyc_question_1_option_5') }}</label>
                 </div>
             </div>
 
             <!-- Question 2: Loss Tolerance -->
             <div class="question-group">
-                <h4>2. If your ₪100,000 investment drops to ₪75,000 in 6 months, what would you do?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_2_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="loss_tolerance" value="0" required> Sell immediately to prevent further losses</label>
-                    <label><input type="radio" name="loss_tolerance" value="25"> Sell part of the investment</label>
-                    <label><input type="radio" name="loss_tolerance" value="60"> Wait and do nothing</label>
-                    <label><input type="radio" name="loss_tolerance" value="100"> Buy more at this discount</label>
+                    <label><input type="radio" name="loss_tolerance" value="0" required> {{ content.risk_assessment('kyc_question_2_option_1') }}</label>
+                    <label><input type="radio" name="loss_tolerance" value="25"> {{ content.risk_assessment('kyc_question_2_option_2') }}</label>
+                    <label><input type="radio" name="loss_tolerance" value="60"> {{ content.risk_assessment('kyc_question_2_option_3') }}</label>
+                    <label><input type="radio" name="loss_tolerance" value="100"> {{ content.risk_assessment('kyc_question_2_option_4') }}</label>
                 </div>
             </div>
 
             <!-- Question 3: Experience -->
             <div class="question-group">
-                <h4>3. How did you behave during market crashes (2008, 2020)?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_3_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="experience_score" value="20" required> I was not invested then</label>
-                    <label><input type="radio" name="experience_score" value="0"> I sold due to fear of losses</label>
-                    <label><input type="radio" name="experience_score" value="70"> I held my investments</label>
-                    <label><input type="radio" name="experience_score" value="100"> I bought more when prices fell</label>
+                    <label><input type="radio" name="experience_score" value="20" required> {{ content.risk_assessment('kyc_question_3_option_1') }}</label>
+                    <label><input type="radio" name="experience_score" value="0"> {{ content.risk_assessment('kyc_question_3_option_2') }}</label>
+                    <label><input type="radio" name="experience_score" value="70"> {{ content.risk_assessment('kyc_question_3_option_3') }}</label>
+                    <label><input type="radio" name="experience_score" value="100"> {{ content.risk_assessment('kyc_question_3_option_4') }}</label>
                 </div>
             </div>
 
             <!-- Question 4: Financial Capacity -->
             <div class="question-group">
-                <h4>4. How much of your monthly income can you invest without affecting your lifestyle?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_4_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="financial_score" value="20" required> Up to 5%</label>
-                    <label><input type="radio" name="financial_score" value="50"> 5-15%</label>
-                    <label><input type="radio" name="financial_score" value="75"> 15-25%</label>
-                    <label><input type="radio" name="financial_score" value="100"> Over 25%</label>
+                    <label><input type="radio" name="financial_score" value="20" required> {{ content.risk_assessment('kyc_question_4_option_1') }}</label>
+                    <label><input type="radio" name="financial_score" value="50"> {{ content.risk_assessment('kyc_question_4_option_2') }}</label>
+                    <label><input type="radio" name="financial_score" value="75"> {{ content.risk_assessment('kyc_question_4_option_3') }}</label>
+                    <label><input type="radio" name="financial_score" value="100"> {{ content.risk_assessment('kyc_question_4_option_4') }}</label>
                 </div>
             </div>
 
             <!-- Question 5: Investment Goal -->
             <div class="question-group">
-                <h4>5. What is the main goal of this investment?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_5_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="goal_score" value="0" required> Capital preservation</label>
-                    <label><input type="radio" name="goal_score" value="25"> Current income</label>
-                    <label><input type="radio" name="goal_score" value="60"> Moderate growth</label>
-                    <label><input type="radio" name="goal_score" value="100"> Maximum growth</label>
+                    <label><input type="radio" name="goal_score" value="0" required> {{ content.risk_assessment('kyc_question_5_option_1') }}</label>
+                    <label><input type="radio" name="goal_score" value="25"> {{ content.risk_assessment('kyc_question_5_option_2') }}</label>
+                    <label><input type="radio" name="goal_score" value="60"> {{ content.risk_assessment('kyc_question_5_option_3') }}</label>
+                    <label><input type="radio" name="goal_score" value="100"> {{ content.risk_assessment('kyc_question_5_option_4') }}</label>
                 </div>
             </div>
 
             <!-- Question 6: Sleep Test -->
             <div class="question-group">
-                <h4>6. What portfolio decline would keep you awake at night?</h4>
+                <h4>{{ content.risk_assessment('kyc_question_6_title') }}</h4>
                 <div class="options">
-                    <label><input type="radio" name="sleep_score" value="0" required> Over 5%</label>
-                    <label><input type="radio" name="sleep_score" value="30"> Over 15%</label>
-                    <label><input type="radio" name="sleep_score" value="70"> Over 25%</label>
-                    <label><input type="radio" name="sleep_score" value="100"> Over 40%</label>
+                    <label><input type="radio" name="sleep_score" value="0" required> {{ content.risk_assessment('kyc_question_6_option_1') }}</label>
+                    <label><input type="radio" name="sleep_score" value="30"> {{ content.risk_assessment('kyc_question_6_option_2') }}</label>
+                    <label><input type="radio" name="sleep_score" value="70"> {{ content.risk_assessment('kyc_question_6_option_3') }}</label>
+                    <label><input type="radio" name="sleep_score" value="100"> {{ content.risk_assessment('kyc_question_6_option_4') }}</label>
                 </div>
             </div>
 
             <!-- Inconsistency Warnings -->
             <div id="kyc-warnings" class="warnings hidden">
-                <h4>⚠️ Please Review Your Answers</h4>
+                <h4>{{ content.risk_assessment('kyc_warnings_title') }}</h4>
                 <div id="warning-messages"></div>
-                <p><small>You can still proceed, but we recommend reviewing the flagged responses for better results.</small></p>
+                <p><small>{{ content.risk_assessment('kyc_warnings_subtitle') }}</small></p>
             </div>
         </div>
 

@@ -31,6 +31,15 @@ def render_template(request: Request, template_name: str, context: dict = None):
 async def health():
     return {"status": "ok"}
 
+@app.get("/reload-content")
+async def reload_content():
+    """Development endpoint to reload content files"""
+    try:
+        content_loader.reload_content()
+        return {"status": "success", "message": "Content reloaded successfully"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 @app.get("/set-language")
 async def set_language(request: Request, lang: str, redirect_to: str = "/"):
     """Set language preference and redirect"""
