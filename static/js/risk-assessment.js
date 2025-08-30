@@ -1,60 +1,80 @@
-// Risk Assessment JavaScript
+// KYC Risk Assessment JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    const riskSlider = document.getElementById('risk_level');
-    const riskDescription = document.getElementById('risk-description');
-    const durationSlider = document.getElementById('investment_duration');
-    const durationValue = document.getElementById('duration-value');
-    const durationDescription = document.getElementById('duration-description');
     const riskForm = document.getElementById('risk-form');
     const portfolioResults = document.getElementById('portfolio-results');
+    const warningsContainer = document.getElementById('kyc-warnings');
+    const warningMessages = document.getElementById('warning-messages');
     
-    // Risk level descriptions
-    const riskDescriptions = {
-        1: "Very Conservative - Capital preservation is priority, minimal volatility",
-        2: "Conservative - Low risk, stable returns with minimal fluctuation", 
-        3: "Moderately Conservative - Some growth potential with lower volatility",
-        4: "Moderate - Balanced approach between stability and growth",
-        5: "Moderate - Balanced approach between growth and stability",
-        6: "Moderately Aggressive - Higher growth potential with moderate risk",
-        7: "Aggressive - Focused on growth with higher volatility tolerance",
-        8: "Very Aggressive - Maximum growth potential, comfortable with high volatility",
-        9: "Extremely Aggressive - Seeking highest returns, accepting significant risk",
-        10: "Maximum Risk - Speculative investments, potential for large gains/losses"
-    };
+    // Track KYC responses for validation
+    let currentResponses = {};
     
-    // Duration descriptions
-    const durationDescriptions = {
-        1: "Very short-term - Focus on capital preservation with minimal risk",
-        2: "Short-term - Conservative approach with stable, liquid investments",
-        5: "Medium-term - Balanced strategy allowing moderate growth potential",
-        10: "Medium-long term - Growth-oriented with time for market volatility",
-        15: "Long-term - Aggressive growth strategy leveraging compound returns",
-        20: "Very long-term - Maximum growth potential through equity exposure",
-        30: "Ultra long-term - Generational wealth building with high risk tolerance"
-    };
-
-    function getDurationDescription(years) {
-        if (years <= 2) return durationDescriptions[1];
-        if (years <= 4) return durationDescriptions[2];
-        if (years <= 7) return durationDescriptions[5];
-        if (years <= 12) return durationDescriptions[10];
-        if (years <= 18) return durationDescriptions[15];
-        if (years <= 25) return durationDescriptions[20];
-        return durationDescriptions[30];
+    // Add change listeners to all radio buttons
+    const radioButtons = document.querySelectorAll('input[type="radio"][name="horizon_score"], input[type="radio"][name="loss_tolerance"], input[type="radio"][name="experience_score"], input[type="radio"][name="financial_score"], input[type="radio"][name="goal_score"], input[type="radio"][name="sleep_score"]');
+    
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            currentResponses[this.name] = parseInt(this.value);
+            validateResponses();
+        });
+    });
+    
+    // Simple client-side consistency validation
+    function validateResponses() {
+        if (Object.keys(currentResponses).length < 6) return; // Not all questions answered
+        
+        const warnings = [];
+        
+        // Short horizon + high risk tolerance
+        if (currentResponses.horizon_score < 30 && currentResponses.loss_tolerance > 70) {
+            warnings.push({
+                message: "Short-term investment with high risk tolerance - consider a more conservative approach",
+                severity: "warning"
+            });
+        }
+        
+        // Low experience + aggressive goals
+        if (currentResponses.experience_score < 30 && currentResponses.goal_score > 80) {
+            warnings.push({
+                message: "Limited experience with aggressive growth goals - consider starting with a moderate approach",
+                severity: "warning"
+            });
+        }
+        
+        // Low financial capacity + high risk appetite
+        if (currentResponses.financial_score < 40 && currentResponses.loss_tolerance > 60) {
+            warnings.push({
+                message: "Limited financial capacity with high risk appetite - important to start conservatively",
+                severity: "error"
+            });
+        }
+        
+        // Sleep test vs loss tolerance mismatch
+        if (Math.abs(currentResponses.sleep_score - currentResponses.loss_tolerance) > 40) {
+            warnings.push({
+                message: "Contradiction between stated and practical loss tolerance - we'll use the more conservative limit",
+                severity: "warning"
+            });
+        }
+        
+        // Display warnings
+        displayWarnings(warnings);
     }
-
-    // Update risk description when slider changes
-    riskSlider.addEventListener('input', function() {
-        const level = parseInt(this.value);
-        riskDescription.textContent = riskDescriptions[level];
-    });
-
-    // Update duration display when slider changes
-    durationSlider.addEventListener('input', function() {
-        const years = parseInt(this.value);
-        durationValue.textContent = years;
-        durationDescription.textContent = getDurationDescription(years);
-    });
+    
+    function displayWarnings(warnings) {
+        if (warnings.length === 0) {
+            warningsContainer.classList.add('hidden');
+            return;
+        }
+        
+        let warningHtml = '';
+        warnings.forEach(warning => {
+            const severityClass = warning.severity === 'error' ? 'warning-severity-error' : '';
+            warningHtml += `<div class="warning-item ${severityClass}">${warning.message}</div>`;
+        });
+        
+        warningMessages.innerHTML = warningHtml;
+        warningsContainer.classList.remove('hidden');
+    }
     
     // Handle form submission
     riskForm.addEventListener('submit', async function(e) {
@@ -63,34 +83,98 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(this);
         const submitButton = this.querySelector('.submit-button');
         
+        // Validate all questions are answered
+        const requiredFields = ['horizon_score', 'loss_tolerance', 'experience_score', 'financial_score', 'goal_score', 'sleep_score'];
+        let allAnswered = true;
+        let missingFields = [];
+        
+        requiredFields.forEach(field => {
+            const value = formData.get(field);
+            if (!value) {
+                allAnswered = false;
+                missingFields.push(field);
+            }
+        });
+        
+        if (!allAnswered) {
+            console.log('Missing fields:', missingFields);
+            alert(`Please answer all questions before proceeding. Missing: ${missingFields.join(', ')}`);
+            return;
+        }
+        
+        console.log('All questions answered, submitting form...');
+        
         // Show loading state
-        submitButton.textContent = 'Creating Your Quantica Portfolio...';
+        submitButton.textContent = 'Analyzing Your Risk Profile...';
         submitButton.disabled = true;
         
         try {
+            console.log('Sending request to /api/calculate-portfolio...');
+            
             const response = await fetch('/api/calculate-portfolio', {
                 method: 'POST',
                 body: formData
             });
             
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+            
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorText = await response.text();
+                console.error('Server error response:', errorText);
+                throw new Error(`Server error: ${response.status} - ${errorText}`);
             }
             
             const data = await response.json();
             console.log('Portfolio data received:', data);
+            
+            // Check for blocking inconsistencies
+            if (data.error === 'inconsistent_responses') {
+                displayBlockingError(data);
+                return;
+            }
+            
             displayPortfolioResults(data);
             
         } catch (error) {
             console.error('Error details:', error);
             console.error('Error stack:', error.stack);
-            alert('Error calculating portfolio. Please try again.');
+            
+            // Try to get more error details
+            if (error.message.includes('Network response was not ok')) {
+                console.error('HTTP error - check server logs');
+            }
+            
+            alert('Error calculating portfolio. Please check the console for details and try again.');
         } finally {
             // Reset button
             submitButton.textContent = 'Create My Quantica Portfolio';
             submitButton.disabled = false;
         }
     });
+    
+    function displayBlockingError(errorData) {
+        let errorHtml = '<div class="error-container" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--border-radius); padding: 1.5rem; margin: 1.5rem 0;">';
+        errorHtml += '<h4 style="color: #ef4444; margin-bottom: 1rem;">⚠️ Cannot Calculate Portfolio</h4>';
+        errorHtml += '<p style="margin-bottom: 1rem;">Your responses contain inconsistencies that prevent us from creating a suitable portfolio:</p>';
+        
+        errorData.kyc_profile.inconsistencies.forEach(inc => {
+            errorHtml += `<div style="background: rgba(239, 68, 68, 0.05); padding: 0.75rem; border-radius: var(--border-radius); margin-bottom: 0.5rem; border-left: 3px solid #ef4444;">${inc.message}</div>`;
+        });
+        
+        errorHtml += '<p style="margin-top: 1rem; color: var(--text-secondary);">Please review your answers and try again with more consistent responses.</p>';
+        errorHtml += '</div>';
+        
+        // Insert error message before the submit button
+        const submitButton = document.querySelector('.submit-button');
+        submitButton.insertAdjacentHTML('beforebegin', errorHtml);
+        
+        // Remove error after 10 seconds
+        setTimeout(() => {
+            const errorContainer = document.querySelector('.error-container');
+            if (errorContainer) errorContainer.remove();
+        }, 10000);
+    }
     
     function displayPortfolioResults(data) {
         // Update summary stats
@@ -109,9 +193,66 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create portfolio details table
         createPortfolioDetails(data.portfolio, data.investment_amount);
         
+        // NEW: Display KYC profile information
+        displayKYCProfile(data.kyc_profile);
+        
         // Show results
         portfolioResults.classList.remove('hidden');
         portfolioResults.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function displayKYCProfile(kycProfile) {
+        // Create KYC profile section if it doesn't exist
+        let kycProfileContainer = document.getElementById('kyc-profile-container');
+        if (!kycProfileContainer) {
+            kycProfileContainer = document.createElement('div');
+            kycProfileContainer.id = 'kyc-profile-container';
+            
+            // Insert after portfolio summary
+            const portfolioSummary = document.querySelector('.portfolio-summary');
+            portfolioSummary.parentNode.insertBefore(kycProfileContainer, portfolioSummary.nextSibling);
+        }
+        
+        let html = `
+            <div class="kyc-profile-section">
+                <h3>Your Risk Profile</h3>
+                <div class="risk-profile-card">
+                    <div class="profile-header">
+                        <h4>${kycProfile.category}</h4>
+                        <div class="confidence-score">Confidence: ${(kycProfile.confidence_score * 100).toFixed(0)}%</div>
+                    </div>
+                    <div class="risk-constraints">
+                        <div class="constraint-item">
+                            <span class="label">Max Expected Loss:</span>
+                            <span class="value">${kycProfile.risk_constraints.max_drawdown}</span>
+                        </div>
+                        <div class="constraint-item">
+                            <span class="label">Volatility Target:</span>
+                            <span class="value">${kycProfile.risk_constraints.target_volatility}</span>
+                        </div>
+                        <div class="constraint-item">
+                            <span class="label">Equity Allocation:</span>
+                            <span class="value">${kycProfile.risk_constraints.equity_range}</span>
+                        </div>
+                        <div class="constraint-item">
+                            <span class="label">Recovery Time:</span>
+                            <span class="value">${kycProfile.risk_constraints.recovery_time_months} months</span>
+                        </div>
+                    </div>
+        `;
+        
+        // Add warnings if any
+        if (kycProfile.has_warnings) {
+            html += '<div class="profile-warnings"><h5>Advisory Notes:</h5>';
+            kycProfile.inconsistencies.forEach(inc => {
+                html += `<div class="warning-note">${inc.message}</div>`;
+            });
+            html += '</div>';
+        }
+        
+        html += '</div></div>';
+        
+        kycProfileContainer.innerHTML = html;
     }
     
     function createPortfolioChart(portfolio) {
@@ -125,14 +266,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const labels = Object.keys(portfolio);
         const data = Object.values(portfolio).map(val => val * 100);
         const colors = [
-            '#3b82f6', // Blue
-            '#10b981', // Green  
-            '#f59e0b', // Yellow
-            '#ef4444', // Red
-            '#8b5cf6', // Purple
-            '#06b6d4', // Cyan
-            '#84cc16', // Lime
-            '#f97316'  // Orange
+            '#3b82f6', '#10b981', '#f59e0b', '#ef4444', 
+            '#8b5cf6', '#06b6d4', '#84cc16', '#f97316'
         ];
         
         window.portfolioChart = new Chart(ctx, {
@@ -154,9 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         position: 'bottom',
                         labels: {
                             padding: 20,
-                            font: {
-                                size: 14
-                            }
+                            font: { size: 14 }
                         }
                     },
                     tooltip: {
@@ -256,9 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     legend: {
                         labels: {
                             color: '#ffffff',
-                            font: {
-                                size: 14
-                            }
+                            font: { size: 14 }
                         }
                     },
                     tooltip: {
@@ -282,22 +413,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         type: 'time',
                         time: {
                             unit: 'month',
-                            displayFormats: {
-                                month: 'MMM yyyy'
-                            }
+                            displayFormats: { month: 'MMM yyyy' }
                         },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: '#a1a1aa'
-                        }
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#a1a1aa' }
                     },
                     y: {
                         beginAtZero: false,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
                         ticks: {
                             color: '#a1a1aa',
                             callback: function(value) {
@@ -333,9 +456,101 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Add CSS for allocation table
+// Add CSS for KYC profile and improved styling
 const style = document.createElement('style');
 style.textContent = `
+    .kyc-profile-section {
+        background: var(--surface-elevated);
+        padding: 2rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-color);
+        margin: 2rem 0;
+    }
+    
+    .kyc-profile-section h3 {
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    
+    .risk-profile-card {
+        background: var(--surface-color);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+    }
+    
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .profile-header h4 {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin: 0;
+    }
+    
+    .confidence-score {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+    
+    .risk-constraints {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .constraint-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem;
+        background: var(--background-secondary);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+    }
+    
+    .constraint-item .label {
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    
+    .constraint-item .value {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+    
+    .profile-warnings {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .profile-warnings h5 {
+        color: var(--accent-color);
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    .warning-note {
+        background: rgba(245, 158, 11, 0.05);
+        padding: 0.75rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 0.5rem;
+        border-left: 3px solid var(--accent-color);
+        color: var(--text-secondary);
+    }
+    
     .allocation-table {
         margin-top: 1rem;
         border-radius: 8px;

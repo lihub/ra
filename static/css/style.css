@@ -711,6 +711,111 @@ body {
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
 }
 
+/* KYC Questions Styling */
+.kyc-questions {
+    margin-bottom: 2rem;
+}
+
+.kyc-questions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.kyc-questions p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.question-group {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.question-group h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.question-group .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.question-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--background-secondary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.question-group label:hover {
+    background: var(--surface-elevated);
+    border-color: var(--border-light);
+}
+
+.question-group input[type="radio"] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.question-group label:has(input[type="radio"]:checked) {
+    background: var(--primary-color);
+    color: var(--text-primary);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+/* Warning Messages */
+.warnings {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.warnings h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.warnings.hidden {
+    display: none;
+}
+
+.warning-item {
+    background: rgba(245, 158, 11, 0.05);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--accent-color);
+}
+
+.warning-item:last-child {
+    margin-bottom: 0;
+}
+
+.warning-severity-error {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
 /* Portfolio Results */
 .portfolio-results {
     margin-top: 3rem;

@@ -73,14 +73,58 @@ async def support(request: Request):
 
 @app.post("/api/calculate-portfolio")
 async def calculate_portfolio(
-    risk_level: int = Form(...),
+    # KYC Responses (replacing risk_level)
+    horizon_score: int = Form(...),
+    loss_tolerance: int = Form(...), 
+    experience_score: int = Form(...),
+    financial_score: int = Form(...),
+    goal_score: int = Form(...),
+    sleep_score: int = Form(...),
+    # Existing parameters
     investment_amount: float = Form(...),
     investment_duration: float = Form(10.0)
 ):
     import traceback
     
     try:
-        print(f"Starting optimization for risk level {risk_level}, amount ${investment_amount}, duration {investment_duration} years")
+        # Process KYC responses first
+        from kyc import KYCRiskAssessor
+        
+        kyc_responses = {
+            'horizon_score': horizon_score,
+            'loss_tolerance': loss_tolerance,
+            'experience_score': experience_score,
+            'financial_score': financial_score, 
+            'goal_score': goal_score,
+            'sleep_score': sleep_score
+        }
+        
+        kyc_assessor = KYCRiskAssessor()
+        kyc_result = kyc_assessor.process_responses(kyc_responses)
+        
+        print(f"KYC Assessment: {kyc_result.category_english}, risk_level={kyc_result.risk_level}")
+        
+        # Check for error-level inconsistencies (block portfolio calculation)
+        if not kyc_result.is_consistent():
+            error_inconsistencies = [inc for inc in kyc_result.inconsistencies if inc.severity == 'error']
+            if error_inconsistencies:
+                return {
+                    "error": "inconsistent_responses",
+                    "error_type": "blocking_inconsistencies", 
+                    "kyc_profile": {
+                        "category": kyc_result.category_english,
+                        "inconsistencies": [
+                            {
+                                "type": inc.type.value,
+                                "message": inc.message_english,
+                                "severity": inc.severity
+                            }
+                            for inc in error_inconsistencies
+                        ]
+                    }
+                }
+        
+        print(f"Starting optimization for risk level {kyc_result.risk_level}, amount ${investment_amount}, duration {investment_duration} years")
         
         from portfolio.optimizer_v2 import AdvancedPortfolioOptimizer
         from portfolio.data_manager import MarketDataManager
@@ -91,9 +135,9 @@ async def calculate_portfolio(
         analytics = PortfolioAnalytics()
         optimizer = AdvancedPortfolioOptimizer(data_manager, analytics)
         
-        # Optimize portfolio with duration support
+        # Optimize portfolio using KYC-derived risk level
         result = optimizer.optimize_portfolio(
-            risk_level=risk_level,
+            risk_level=kyc_result.risk_level,
             investment_duration_years=investment_duration,
             investment_amount=investment_amount
         )
@@ -109,7 +153,7 @@ async def calculate_portfolio(
         insights = optimizer.get_optimization_insights(result, investment_duration)
         
         return {
-            "risk_level": risk_level,
+            "risk_level": kyc_result.risk_level,
             "investment_amount": investment_amount,
             "investment_duration": investment_duration,
             "portfolio": result.allocation,
@@ -126,6 +170,30 @@ async def calculate_portfolio(
                 "sortino_ratio": round(result.performance_metrics.sortino_ratio, 2),
                 "value_at_risk_95": round(result.performance_metrics.value_at_risk_95 * 100, 2),
                 "winning_periods": round(result.performance_metrics.winning_periods * 100, 1)
+            },
+            # NEW: KYC Profile Information
+            "kyc_profile": {
+                "category": kyc_result.category_english,
+                "category_hebrew": kyc_result.category_hebrew,
+                "composite_score": round(kyc_result.composite_score, 1),
+                "confidence_score": round(kyc_result.confidence_score, 2),
+                "risk_constraints": {
+                    "max_drawdown": f"{kyc_result.max_drawdown:.1%}",
+                    "target_volatility": f"{kyc_result.target_volatility:.1%}",
+                    "recovery_time_months": kyc_result.recovery_time_months,
+                    "equity_range": f"{kyc_result.equity_range[0]:.0%}-{kyc_result.equity_range[1]:.0%}",
+                    "international_max": f"{kyc_result.international_max:.0%}",
+                    "alternatives_max": f"{kyc_result.alternatives_max:.0%}"
+                },
+                "inconsistencies": [
+                    {
+                        "type": inc.type.value,
+                        "message": inc.message_english,
+                        "severity": inc.severity
+                    }
+                    for inc in kyc_result.inconsistencies
+                ],
+                "has_warnings": kyc_result.has_warnings()
             }
         }
         
