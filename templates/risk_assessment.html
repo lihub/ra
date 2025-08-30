@@ -1,81 +1,81 @@
 {% extends "base.html" %}
 
-{% block title %}{{ _("Portfolio Builder - Quantica") }}{% endblock %}
+{% block title %}{{ content.risk_assessment('page_title') }}{% endblock %}
 
 {% block content %}
 <div class="assessment-container">
     <div class="assessment-header">
-        <h1>{{ _("Build Your Quantica Portfolio") }}</h1>
-        <p>{{ _("Answer a few questions to create your personalized, optimized investment strategy") }}</p>
+        <h1>{{ content.risk_assessment('header_title') }}</h1>
+        <p>{{ content.risk_assessment('header_subtitle') }}</p>
     </div>
 
     <form id="risk-form" class="risk-form">
         <div class="form-section">
-            <h3>{{ _("Investment Amount") }}</h3>
+            <h3>{{ content.risk_assessment('investment_amount_title') }}</h3>
             <div class="input-group">
-                <label for="investment_amount">{{ _("How much would you like to invest?") }}</label>
+                <label for="investment_amount">{{ content.risk_assessment('investment_amount_label') }}</label>
                 <input type="number" id="investment_amount" name="investment_amount" 
                        min="1000" step="1000" value="10000" required>
-                <span class="currency">{{ _("USD") }}</span>
+                <span class="currency">{{ content.risk_assessment('currency') }}</span>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>{{ _("Risk Tolerance") }}</h3>
+            <h3>{{ content.risk_assessment('risk_tolerance_title') }}</h3>
             <div class="risk-slider-container">
-                <label for="risk_level">{{ _("Select your risk level:") }}</label>
+                <label for="risk_level">{{ content.risk_assessment('risk_level_label') }}</label>
                 <input type="range" id="risk_level" name="risk_level" 
                        min="1" max="10" value="5" class="risk-slider">
                 <div class="risk-labels">
-                    <span>{{ _("Conservative (1)") }}</span>
-                    <span>{{ _("Moderate (5)") }}</span>
-                    <span>{{ _("Aggressive (10)") }}</span>
+                    <span>{{ content.risk_assessment('conservative_label') }}</span>
+                    <span>{{ content.risk_assessment('moderate_label') }}</span>
+                    <span>{{ content.risk_assessment('aggressive_label') }}</span>
                 </div>
                 <div class="risk-description" id="risk-description">
-                    {{ _("Moderate risk tolerance - Balanced approach between growth and stability") }}
+                    {{ content.risk_assessment('moderate_description') }}
                 </div>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>{{ _("Investment Duration") }}</h3>
+            <h3>{{ content.risk_assessment('investment_timeline_title') }}</h3>
             <div class="duration-slider-container">
-                <label for="investment_duration">{{ _("How long do you plan to invest? (years)") }}</label>
+                <label for="investment_duration">{{ content.risk_assessment('timeline_label') }}</label>
                 <input type="range" id="investment_duration" name="investment_duration" 
                        min="1" max="30" value="10" class="duration-slider">
                 <div class="duration-display">
-                    <span id="duration-value">10</span> {{ _("years") }}
+                    <span id="duration-value">10</span> years
                 </div>
                 <div class="duration-labels">
-                    <span>1 {{ _("years") }}</span>
-                    <span>15 {{ _("years") }}</span>
-                    <span>30 {{ _("years") }}</span>
+                    <span>{{ content.risk_assessment('timeline_1_year') }}</span>
+                    <span>15 years</span>
+                    <span>30+ years</span>
                 </div>
                 <div class="duration-description" id="duration-description">
-                    {{ _("Medium-term investment horizon allowing for balanced growth strategy") }}
+                    {{ content.risk_assessment('moderate_description') }}
                 </div>
             </div>
         </div>
 
         <button type="submit" class="submit-button">
-            {{ _("Create My Quantica Portfolio") }}
+            {{ content.risk_assessment('calculate_button') }}
         </button>
     </form>
 
     <div id="portfolio-results" class="portfolio-results hidden">
-        <h2>{{ _("Your Optimized Portfolio") }}</h2>
+        <h2>{{ content.risk_assessment('results_title') }}</h2>
         <div class="portfolio-summary">
             <div class="summary-stats">
                 <div class="stat">
-                    <h4>{{ _("Expected Annual Return") }}</h4>
+                    <h4>{{ content.risk_assessment('expected_return_label') }}</h4>
                     <span id="expected-return">-</span>
                 </div>
                 <div class="stat">
-                    <h4>{{ _("Portfolio Volatility") }}</h4>
+                    <h4>{{ content.risk_assessment('volatility_label') }}</h4>
                     <span id="volatility">-</span>
                 </div>
                 <div class="stat">
-                    <h4>{{ _("Sharpe Ratio") }}</h4>
+                    <h4>Sharpe Ratio</h4>
                     <span id="sharpe-ratio">-</span>
                 </div>
             </div>
