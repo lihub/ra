@@ -27,6 +27,21 @@ def render_template(request: Request, template_name: str, context: dict = None):
     
     return templates.TemplateResponse(template_name, context)
 
+def get_category_breakdown(allocation_percentages, data_manager):
+    """Helper function to calculate category breakdown"""
+    category_breakdown = {}
+    
+    for asset_name, weight in allocation_percentages.items():
+        metadata = data_manager.asset_metadata.get(asset_name)
+        if metadata:
+            category = metadata.category
+            if category not in category_breakdown:
+                category_breakdown[category] = 0
+            category_breakdown[category] += weight
+    
+    # Convert to percentages and round
+    return {cat: round(weight * 100, 1) for cat, weight in category_breakdown.items()}
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
@@ -133,77 +148,68 @@ async def calculate_portfolio(
                     }
                 }
         
-        print(f"Starting optimization for risk level {kyc_result.risk_level}, amount ${investment_amount}, duration {investment_duration} years")
+        print(f"Starting optimization for {kyc_result.category_english} (score: {kyc_result.composite_score:.1f})")
+        print(f"Investment: ₪{investment_amount:,.0f}, Duration: {investment_duration} years")
         
-        from portfolio.optimizer_v2 import AdvancedPortfolioOptimizer
-        from portfolio.data_manager import MarketDataManager
-        from portfolio.analytics import PortfolioAnalytics
+        from portfolio.unified_optimizer import UnifiedPortfolioOptimizer
         
-        # Initialize components
-        data_manager = MarketDataManager()
-        analytics = PortfolioAnalytics()
-        optimizer = AdvancedPortfolioOptimizer(data_manager, analytics)
+        # Initialize unified optimizer (handles ILS conversion automatically)
+        optimizer = UnifiedPortfolioOptimizer()
         
-        # Optimize portfolio using KYC-derived risk level
+        # Optimize portfolio using complete KYC response
         result = optimizer.optimize_portfolio(
-            risk_level=kyc_result.risk_level,
-            investment_duration_years=investment_duration,
-            investment_amount=investment_amount
+            kyc_response=kyc_result,
+            investment_amount=investment_amount,
+            investment_duration_years=investment_duration
         )
         
-        print(f"Optimization completed successfully: {result.optimization_success}")
-        
-        # Convert allocation percentages to dollar amounts
-        portfolio_dollars = {}
-        for asset, weight in result.allocation.items():
-            portfolio_dollars[asset] = round(investment_amount * weight, 2)
-        
-        # Get optimization insights
-        insights = optimizer.get_optimization_insights(result, investment_duration)
+        print(f"Optimization completed: {result.optimization_success} ({result.optimization_time_ms:.0f}ms)")
+        print(f"Expected return: {result.expected_return_annual:.1%}, Volatility: {result.volatility_annual:.1%}")
+        print(f"CVaR 95%: {result.cvar_95:.1%}, Max Drawdown: {result.max_drawdown:.1%}")
         
         return {
-            "risk_level": kyc_result.risk_level,
-            "investment_amount": investment_amount,
-            "investment_duration": investment_duration,
-            "portfolio": result.allocation,
-            "portfolio_dollars": portfolio_dollars,
-            "expected_return": result.expected_return * 100,  # Convert to percentage
-            "volatility": result.volatility * 100,  # Convert to percentage
-            "sharpe_ratio": result.sharpe_ratio,
-            "optimization_success": result.optimization_success,
-            "constraints_satisfied": result.constraints_satisfied,
-            "performance_history": result.performance_history,
-            "insights": insights,
-            "performance_metrics": {
-                "max_drawdown": round(result.performance_metrics.max_drawdown * 100, 2),
-                "sortino_ratio": round(result.performance_metrics.sortino_ratio, 2),
-                "value_at_risk_95": round(result.performance_metrics.value_at_risk_95 * 100, 2),
-                "winning_periods": round(result.performance_metrics.winning_periods * 100, 1)
-            },
-            # NEW: KYC Profile Information
-            "kyc_profile": {
+            "risk_assessment": {
                 "category": kyc_result.category_english,
                 "category_hebrew": kyc_result.category_hebrew,
-                "composite_score": round(kyc_result.composite_score, 1),
-                "confidence_score": round(kyc_result.confidence_score, 2),
-                "risk_constraints": {
-                    "max_drawdown": f"{kyc_result.max_drawdown:.1%}",
-                    "target_volatility": f"{kyc_result.target_volatility:.1%}",
-                    "recovery_time_months": kyc_result.recovery_time_months,
-                    "equity_range": f"{kyc_result.equity_range[0]:.0%}-{kyc_result.equity_range[1]:.0%}",
-                    "international_max": f"{kyc_result.international_max:.0%}",
-                    "alternatives_max": f"{kyc_result.alternatives_max:.0%}"
-                },
-                "inconsistencies": [
-                    {
-                        "type": inc.type.value,
-                        "message": inc.message_english,
-                        "severity": inc.severity
-                    }
-                    for inc in kyc_result.inconsistencies
-                ],
-                "has_warnings": kyc_result.has_warnings()
-            }
+                "composite_score": kyc_result.composite_score,
+                "risk_level": kyc_result.risk_level
+            },
+            "investment_details": {
+                "amount_ils": investment_amount,
+                "duration_years": investment_duration,
+                "currency": result.currency
+            },
+            "portfolio_allocation": {
+                "percentages": result.allocation_percentages,
+                "amounts_ils": result.allocation_ils_amounts,
+                "total_invested": result.total_investment_ils
+            },
+            "performance_metrics": {
+                "expected_return_annual": round(result.expected_return_annual * 100, 2),
+                "volatility_annual": round(result.volatility_annual * 100, 2),
+                "sharpe_ratio": round(result.sharpe_ratio, 2),
+                "cvar_95": round(result.cvar_95 * 100, 2),
+                "max_drawdown": round(result.max_drawdown * 100, 2),
+                "risk_free_rate": round(result.risk_free_rate_used * 100, 2),
+                "concentration_hhi": round(result.concentration_hhi, 3)
+            },
+            "risk_analysis": {
+                "risk_contributions": result.risk_contributions,
+                "category_breakdown": get_category_breakdown(result.allocation_percentages, optimizer.data_manager)
+            },
+            "optimization_info": {
+                "success": result.optimization_success,
+                "time_ms": round(result.optimization_time_ms, 1),
+                "risk_category": result.risk_category
+            },
+            "kyc_inconsistencies": [
+                {
+                    "type": inc.type.value,
+                    "message": inc.message_english,
+                    "severity": inc.severity
+                }
+                for inc in kyc_result.inconsistencies
+            ] if kyc_result.inconsistencies else []
         }
         
     except Exception as e:

@@ -30,39 +30,101 @@ The processor automatically applies data quality fixes for known issues:
 - **Result**: 187 monthly data points suitable for portfolio calculations
 - **Range**: 0.1% to 4.8% (Bank of Israel rates 2010-2025)
 
+## Critical Data Processing Fix (Session 2025-09-13)
+
+### Major Bug Discovery and Resolution
+**Issue**: Portfolio optimization was showing unrealistically low returns (0-1% annually) despite individual assets having much higher performance.
+
+**Root Cause**: Daily data (3,916 observations over 15.6 years = 251 observations/year) was being treated as monthly data and annualized incorrectly using factor of 12 instead of 251.
+
+**Investigation Process**:
+1. **Debugging Pipeline**: Created `debug_return_calculation.py` to trace data through entire pipeline
+2. **Currency Analysis**: Built `analyze_currency_impact.py` showing USD/ILS impact was minimal (-6.7% drag)  
+3. **Individual Asset Check**: `sanity_check_returns.py` revealed S&P 500 actual performance was 13.7% annually
+4. **Data Frequency Detection**: Found daily data was being processed as monthly returns
+
+**Solution Implemented**:
+- **Automatic Frequency Detection**: Data manager now detects daily vs monthly data (>100 obs/year = daily)
+- **Daily-to-Monthly Conversion**: Daily prices converted to month-end, then monthly returns calculated
+- **Proper FX Handling**: Currency conversion aligned with monthly frequency
+- **Correct Annualization**: Monthly returns annualized using factor of 12
+
+**Results After Fix**:
+- **Individual Assets**: NASDAQ 18.5%, S&P 500 15.6%, Gold 14.6% annually (realistic)
+- **Portfolio Performance**: 2.6-5.8% range (appropriate for diversified portfolios)
+- **Risk-Return Profiles**: Conservative 2.6%, Moderate 5.6%, Aggressive 5.8%
+
+### Currency Impact Analysis
+**Created Comprehensive Analysis**:
+- **US Assets**: USD/ILS impact minimal (-1.6% total change, -6.7% drag on S&P 500)
+- **Indian Assets**: INR/ILS major impact (-51.6% currency change, NIFTY 11.9% INR vs 6.7% ILS annually)
+- **Visualization**: Generated charts showing cumulative returns and currency effects
+
 ## Data Processing Status
-Successfully processed **21 asset classes** from raw data:
+Successfully processed **23 asset classes** with corrected daily-to-monthly conversion:
 
-### Equity Assets (12)
-- US_Large_Cap_SP500 (14.41% return, 17.49% vol, Sharpe 0.82)
-- NASDAQ_Total_Return (16.95% return, 21.33% vol, Sharpe 0.79) 
-- US_Small_Cap_Russell2000 (10.39% return, 22.31% vol, Sharpe 0.47)
-- Europe_MSCI (8.52% return, 15.92% vol, Sharpe 0.53)
-- Japan_MSCI (8.37% return, 18.59% vol, Sharpe 0.45)
-- Emerging_Markets_MSCI (6.30% return, 15.60% vol, Sharpe 0.40)
-- Germany_DAX (10.72% return, 19.51% vol, Sharpe 0.55)
-- France_CAC40 (9.34% return, 19.60% vol, Sharpe 0.48)
-- UK_FTSE100 (8.31% return, 15.02% vol, Sharpe 0.55)
-- India_NIFTY (12.65% return, 16.62% vol, Sharpe 0.76)
-- **US_REIT_Select (8.12% return, 20.99% vol, Sharpe 0.39) - NEW**
+### Equity Assets (12) - CORRECTED PERFORMANCE (ILS Terms, 2017-2025)
+- **NASDAQ_Total_Return (18.5% return, 15.7% vol, Sharpe 1.06) - CORRECTED**
+- **US_Large_Cap_SP500 (15.6% return, 12.7% vol, Sharpe 1.09) - CORRECTED**
+- **Israel_TA125 (14.1% return, 15.6% vol, Sharpe 0.79) - CORRECTED**
+- **India_NIFTY (12.3% return, 18.2% vol, Sharpe 0.58) - CORRECTED**
+- **Germany_DAX (10.3% return, 17.0% vol, Sharpe 0.50) - CORRECTED**
+- **France_CAC40 (10.0% return, 16.5% vol, Sharpe 0.50) - CORRECTED**
+- **Europe_MSCI (9.2% return, 13.7% vol, Sharpe 0.54) - CORRECTED**
+- **Israel_SME60 (8.9% return, 20.5% vol, Sharpe 0.35) - CORRECTED**
+- **UK_FTSE100 (8.6% return, 13.9% vol, Sharpe 0.49) - CORRECTED**
+- **US_Small_Cap_Russell2000 (8.0% return, 18.7% vol, Sharpe 0.34) - CORRECTED**
+- **US_REIT_Select (6.9% return, 16.2% vol, Sharpe 0.32) - CORRECTED**
+- **Emerging_Markets_MSCI (6.8% return, 13.9% vol, Sharpe 0.36) - CORRECTED**
+- **Japan_MSCI (4.9% return, 15.7% vol, Sharpe 0.20) - CORRECTED**
 
-### Bond Assets (2) 
-- US_Gov_Bonds_3_7Y (-0.28% return, 3.97% vol, Sharpe -0.07)
-- **US_Gov_Bonds_Short (-0.18% return, 1.48% vol, Sharpe -0.12) - FIXED**
+### Bond Assets (2) - CORRECTED PERFORMANCE (ILS Terms, 2017-2025)
+- **US_Gov_Bonds_3_7Y (1.0% return, 7.7% vol, Sharpe -0.10) - CORRECTED**
+- **US_Gov_Bonds_Short (1.1% return, 7.9% vol, Sharpe -0.09) - CORRECTED**
 
-### Currency Assets (5)  
-- USD_ILS_FX (-0.27% return, 7.67% vol, Sharpe -0.04)
-- EUR_ILS_FX (-1.45% return, 8.62% vol, Sharpe -0.17)
-- GBP_ILS_FX (-1.32% return, 9.42% vol, Sharpe -0.14)
-- JPY_ILS_FX (-2.81% return, 11.38% vol, Sharpe -0.25)
-- INR_ILS_FX (-4.11% return, 8.84% vol, Sharpe -0.46)
+### Israeli Government/Corporate Bonds (6) - CORRECTED PERFORMANCE
+- **Israel_TelBond_60 (4.5% return, 4.7% vol, Sharpe 0.58) - CORRECTED**
+- **Israel_TelBond_Shekel (3.8% return, 4.9% vol, Sharpe 0.41) - CORRECTED**
+- **Israel_Gov_Indexed_0_2Y (3.6% return, 1.6% vol, Sharpe 1.18) - CORRECTED**
+- **Israel_Gov_Indexed_5_10Y (3.2% return, 4.8% vol, Sharpe 0.31) - CORRECTED**
+- **Israel_Gov_Shekel_0_2Y (3.0% return, 0.8% vol, Sharpe 1.55) - CORRECTED**
+- **Israel_Gov_Shekel_5_10Y (2.4% return, 4.6% vol, Sharpe 0.14) - CORRECTED**
 
-### Commodity Assets (2)
-- Gold_Futures (8.33% return, 16.04% vol, Sharpe 0.52)
-- Oil_Brent_Futures (5.07% return, 35.05% vol, Sharpe 0.14)
+### Commodity Assets (2) - CORRECTED PERFORMANCE (ILS Terms, 2017-2025)
+- **Gold_Futures (14.6% return, 14.6% vol, Sharpe 0.88) - CORRECTED**
+- **Oil_Brent_Futures (12.4% return, 37.7% vol, Sharpe 0.28) - CORRECTED**
 
-### Risk-Free Rate (1) - NEW
-- **Risk_Free_Rate_Israel (0.1%-4.8% rate range, normalized monthly) - NEW**
+### Risk-Free Rate (1)
+- **Risk_Free_Rate_Israel (1.75% average annually, 2017-2025 period) - CORRECTED**
+
+## Portfolio Optimization Results (After Fix)
+
+### Typical Investor Performance (ILS Terms)
+**Young Professional (Moderate Risk, 30yr horizon)**:
+- Expected Return: 5.6% annually
+- Volatility: 5.2%  
+- Sharpe Ratio: 0.74
+- Allocation: 30% Equity, 28% Israeli bonds, 22% US bonds, 20% Commodities
+
+**Tech Entrepreneur (Very Aggressive, 25yr horizon)**:
+- Expected Return: 5.8% annually
+- Volatility: 9.1%
+- Sharpe Ratio: 0.44  
+- Allocation: 70% Equity, 16% Gold, 14% Bonds
+
+**Retiree (Conservative, 5yr horizon)**:
+- Expected Return: 2.6% annually
+- Volatility: 2.6%
+- Sharpe Ratio: 0.31
+- Allocation: 57% Israeli bonds, 27% US bonds, 15% Equity, 1% Commodities
+
+### Key Files Created/Modified This Session
+- `portfolio/ils_data_manager.py` - **MAJOR FIX**: Daily-to-monthly conversion with frequency detection
+- `debug_return_calculation.py` - Debugging pipeline to identify data issues
+- `analyze_currency_impact.py` - US equity vs USD/ILS currency analysis  
+- `analyze_indian_currency_impact.py` - Indian equity vs INR/ILS currency analysis
+- `sanity_check_returns.py` - Individual asset performance validation
+- `show_portfolio_examples.py` - Portfolio optimization examples (working correctly now)
 
 ### US Market ETFs
 - **S&P 500 TR** - S&P 500 Total Return index
