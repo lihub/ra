@@ -151,10 +151,10 @@ async def calculate_portfolio(
         print(f"Starting optimization for {kyc_result.category_english} (score: {kyc_result.composite_score:.1f})")
         print(f"Investment: ₪{investment_amount:,.0f}, Duration: {investment_duration} years")
         
-        from portfolio.unified_optimizer import UnifiedPortfolioOptimizer
+        from portfolio.sortino_adapter import SortinoPortfolioOptimizer
         
-        # Initialize unified optimizer (handles ILS conversion automatically)
-        optimizer = UnifiedPortfolioOptimizer()
+        # Initialize Sortino optimizer (better performance for aggressive investors)
+        optimizer = SortinoPortfolioOptimizer()
         
         # Optimize portfolio using complete KYC response
         result = optimizer.optimize_portfolio(
