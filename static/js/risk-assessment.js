@@ -178,77 +178,69 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function displayPortfolioResults(data) {
         // Update summary stats
-        document.getElementById('expected-return').textContent = data.expected_return.toFixed(1) + '%';
-        document.getElementById('volatility').textContent = data.volatility.toFixed(1) + '%';
-        document.getElementById('sharpe-ratio').textContent = data.sharpe_ratio.toFixed(2);
+        document.getElementById('expected-return').textContent = data.performance_metrics.expected_return_annual.toFixed(1) + '%';
+        document.getElementById('volatility').textContent = data.performance_metrics.volatility_annual.toFixed(1) + '%';
+        document.getElementById('sharpe-ratio').textContent = data.performance_metrics.sharpe_ratio.toFixed(2);
         
         // Create portfolio allocation chart
-        createPortfolioChart(data.portfolio);
-        
-        // Create performance chart
-        if (data.performance_history && data.performance_history.timeseries) {
-            createPerformanceChart(data.performance_history, data.investment_amount);
-        }
-        
+        createPortfolioChart(data.portfolio_allocation.percentages);
+
+        // Create performance chart (skip if no performance history)
+        // if (data.performance_history && data.performance_history.timeseries) {
+        //     createPerformanceChart(data.performance_history, data.investment_details.amount_ils);
+        // }
+
         // Create portfolio details table
-        createPortfolioDetails(data.portfolio, data.investment_amount);
-        
+        createPortfolioDetails(data.portfolio_allocation, data.investment_details.amount_ils);
+
         // NEW: Display KYC profile information
-        displayKYCProfile(data.kyc_profile);
+        displayKYCProfile(data.risk_assessment);
         
         // Show results
         portfolioResults.classList.remove('hidden');
         portfolioResults.scrollIntoView({ behavior: 'smooth' });
     }
     
-    function displayKYCProfile(kycProfile) {
+    function displayKYCProfile(riskAssessment) {
         // Create KYC profile section if it doesn't exist
         let kycProfileContainer = document.getElementById('kyc-profile-container');
         if (!kycProfileContainer) {
             kycProfileContainer = document.createElement('div');
             kycProfileContainer.id = 'kyc-profile-container';
-            
+
             // Insert after portfolio summary
             const portfolioSummary = document.querySelector('.portfolio-summary');
             portfolioSummary.parentNode.insertBefore(kycProfileContainer, portfolioSummary.nextSibling);
         }
-        
+
         let html = `
             <div class="kyc-profile-section">
                 <h3>Your Risk Profile</h3>
                 <div class="risk-profile-card">
                     <div class="profile-header">
-                        <h4>${kycProfile.category}</h4>
-                        <div class="confidence-score">Confidence: ${(kycProfile.confidence_score * 100).toFixed(0)}%</div>
+                        <h4>${riskAssessment.category}</h4>
+                        <div class="confidence-score">Risk Score: ${riskAssessment.composite_score.toFixed(0)}/100</div>
                     </div>
                     <div class="risk-constraints">
                         <div class="constraint-item">
-                            <span class="label">Max Expected Loss:</span>
-                            <span class="value">${kycProfile.risk_constraints.max_drawdown}</span>
+                            <span class="label">Risk Level:</span>
+                            <span class="value">${riskAssessment.risk_level}/10</span>
                         </div>
                         <div class="constraint-item">
-                            <span class="label">Volatility Target:</span>
-                            <span class="value">${kycProfile.risk_constraints.target_volatility}</span>
-                        </div>
-                        <div class="constraint-item">
-                            <span class="label">Equity Allocation:</span>
-                            <span class="value">${kycProfile.risk_constraints.equity_range}</span>
-                        </div>
-                        <div class="constraint-item">
-                            <span class="label">Recovery Time:</span>
-                            <span class="value">${kycProfile.risk_constraints.recovery_time_months} months</span>
+                            <span class="label">Category (Hebrew):</span>
+                            <span class="value">${riskAssessment.category_hebrew}</span>
                         </div>
                     </div>
         `;
         
-        // Add warnings if any
-        if (kycProfile.has_warnings) {
-            html += '<div class="profile-warnings"><h5>Advisory Notes:</h5>';
-            kycProfile.inconsistencies.forEach(inc => {
-                html += `<div class="warning-note">${inc.message}</div>`;
-            });
-            html += '</div>';
-        }
+        // Add warnings if any (skip for now since API structure is different)
+        // if (riskAssessment.has_warnings) {
+        //     html += '<div class="profile-warnings"><h5>Advisory Notes:</h5>';
+        //     riskAssessment.inconsistencies.forEach(inc => {
+        //         html += `<div class="warning-note">${inc.message}</div>`;
+        //     });
+        //     html += '</div>';
+        // }
         
         html += '</div></div>';
         

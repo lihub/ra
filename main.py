@@ -149,7 +149,7 @@ async def calculate_portfolio(
                 }
         
         print(f"Starting optimization for {kyc_result.category_english} (score: {kyc_result.composite_score:.1f})")
-        print(f"Investment: ₪{investment_amount:,.0f}, Duration: {investment_duration} years")
+        print(f"Investment: ILS {investment_amount:,.0f}, Duration: {investment_duration} years")
         
         from portfolio.sortino_adapter import SortinoPortfolioOptimizer
         

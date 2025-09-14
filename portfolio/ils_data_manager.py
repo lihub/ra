@@ -197,7 +197,7 @@ class ILSDataManager:
                     
                     if obs_per_year > 100:  # Daily data
                         # Resample to month-end and calculate monthly returns
-                        monthly_prices = df['price'].resample('M').last()
+                        monthly_prices = df['price'].resample('ME').last()
                         monthly_returns = monthly_prices.pct_change().dropna()
                         df = pd.DataFrame({'return': monthly_returns})
                         logger.debug(f"Converted daily data to monthly: {len(df)} monthly observations")
@@ -277,7 +277,7 @@ class ILSDataManager:
             
             if asset_freq < 50:  # Monthly data, need monthly FX too
                 # Convert daily FX to monthly
-                fx_monthly = fx_data.resample('M').last()
+                fx_monthly = fx_data.resample('ME').last()
                 fx_returns = fx_monthly['fx_rate'].pct_change().dropna()
                 
                 # Align monthly asset returns with monthly FX returns
