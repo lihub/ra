@@ -42,6 +42,9 @@ class OptimizationResult:
     risk_category: str
     composite_score: float
 
+    # Performance history
+    performance_history: Dict
+
 
 class SortinoPortfolioOptimizer:
     """
@@ -95,7 +98,10 @@ class SortinoPortfolioOptimizer:
         
         # Calculate CVaR (using historical approach)
         cvar_95 = self._calculate_cvar(result['weights'])
-        
+
+        # Calculate historical performance
+        performance_history = self.calculate_portfolio_performance(result['weights'], investment_amount)
+
         # Build result matching expected format
         optimization_time = (time.time() - start_time) * 1000
         
@@ -122,7 +128,10 @@ class SortinoPortfolioOptimizer:
             optimization_success=result.get('optimization_success', True),
             optimization_time_ms=optimization_time,
             risk_category=kyc_response.category_english,
-            composite_score=kyc_response.composite_score
+            composite_score=kyc_response.composite_score,
+
+            # Performance history
+            performance_history=performance_history
         )
     
     def _calculate_risk_contributions(self, weights: Dict[str, float]) -> Dict[str, float]:
@@ -176,5 +185,42 @@ class SortinoPortfolioOptimizer:
             
         # Annualize (approximate)
         cvar_annual = cvar_monthly * np.sqrt(12)
-        
+
         return abs(cvar_annual)  # Return as positive value
+
+    def calculate_portfolio_performance(self, weights: Dict[str, float], investment_amount: float) -> Dict:
+        """
+        Calculate historical portfolio performance showing how the investment would have grown.
+
+        Args:
+            weights: Portfolio weights by asset
+            investment_amount: Initial investment amount
+
+        Returns:
+            Dictionary with dates and portfolio values over time
+        """
+        # Create weight array aligned with returns data
+        weight_array = np.zeros(len(self.data_manager.returns_data.columns))
+        for i, asset in enumerate(self.data_manager.returns_data.columns):
+            if asset in weights:
+                weight_array[i] = weights[asset]
+
+        # Calculate portfolio returns over time
+        portfolio_returns = self.data_manager.returns_data @ weight_array
+
+        # Calculate cumulative portfolio value starting with investment amount
+        cumulative_returns = (1 + portfolio_returns).cumprod()
+        portfolio_values = investment_amount * cumulative_returns
+
+        # Create performance data with dates
+        performance_data = {
+            'dates': portfolio_returns.index.strftime('%Y-%m-%d').tolist(),
+            'values': portfolio_values.tolist(),
+            'returns': portfolio_returns.tolist(),
+            'initial_investment': investment_amount,
+            'final_value': portfolio_values.iloc[-1],
+            'total_return_pct': ((portfolio_values.iloc[-1] / investment_amount) - 1) * 100,
+            'years': len(portfolio_returns) / 12.0
+        }
+
+        return performance_data

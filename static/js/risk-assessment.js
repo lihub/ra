@@ -185,10 +185,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create portfolio allocation chart
         createPortfolioChart(data.portfolio_allocation.percentages);
 
-        // Create performance chart (skip if no performance history)
-        // if (data.performance_history && data.performance_history.timeseries) {
-        //     createPerformanceChart(data.performance_history, data.investment_details.amount_ils);
-        // }
+        // Create performance chart
+        if (data.performance_history && data.performance_history.dates) {
+            createPerformanceChart(data.performance_history);
+        }
 
         // Create portfolio details table
         createPortfolioDetails(data.portfolio_allocation);
@@ -296,29 +296,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function createPerformanceChart(performanceData, investmentAmount) {
+    function createPerformanceChart(performanceHistory) {
         // Create performance chart container if it doesn't exist
         let perfChartContainer = document.getElementById('performance-chart-container');
         if (!perfChartContainer) {
             perfChartContainer = document.createElement('div');
             perfChartContainer.id = 'performance-chart-container';
             perfChartContainer.innerHTML = `
-                <h3>Historical Performance</h3>
+                <h3>Portfolio Performance Over Time</h3>
                 <div style="position: relative; height: 400px; margin: 2rem 0;">
                     <canvas id="performanceChart"></canvas>
                 </div>
                 <div class="performance-stats">
                     <div class="stat">
                         <h4>Total Return</h4>
-                        <span id="total-return">${performanceData.summary.total_return_percent.toFixed(1)}%</span>
+                        <span id="total-return">${performanceHistory.total_return_pct.toFixed(1)}%</span>
                     </div>
                     <div class="stat">
-                        <h4>Max Drawdown</h4>
-                        <span id="max-drawdown">${performanceData.summary.max_drawdown_percent.toFixed(1)}%</span>
+                        <h4>Period</h4>
+                        <span id="period">${performanceHistory.years.toFixed(1)} years</span>
                     </div>
                     <div class="stat">
                         <h4>Final Value</h4>
-                        <span id="final-value">$${performanceData.summary.final_value.toLocaleString()}</span>
+                        <span id="final-value">₪${performanceHistory.final_value.toLocaleString('he-IL', {maximumFractionDigits: 0})}</span>
                     </div>
                 </div>
             `;
@@ -335,17 +335,16 @@ document.addEventListener('DOMContentLoaded', function() {
             window.performanceChart.destroy();
         }
         
-        // Scale the performance data to the actual investment amount
-        const scaleFactor = investmentAmount / performanceData.summary.initial_value;
-        const scaledData = performanceData.timeseries.map(point => ({
-            x: point.date,
-            y: point.value * scaleFactor
+        // Create chart data from performance history
+        const chartData = performanceHistory.dates.map((date, index) => ({
+            x: date,
+            y: performanceHistory.values[index]
         }));
-        
+
         // Add baseline (initial investment)
-        const baselineData = performanceData.timeseries.map(point => ({
-            x: point.date,
-            y: investmentAmount
+        const baselineData = performanceHistory.dates.map(date => ({
+            x: date,
+            y: performanceHistory.initial_investment
         }));
         
         window.performanceChart = new Chart(ctx, {
@@ -353,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {
                 datasets: [{
                     label: 'Portfolio Value',
-                    data: scaledData,
+                    data: chartData,
                     borderColor: '#8b5cf6',
                     backgroundColor: 'rgba(139, 92, 246, 0.1)',
                     borderWidth: 3,
@@ -393,9 +392,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         callbacks: {
                             label: function(context) {
                                 const value = context.parsed.y;
-                                const pnl = value - investmentAmount;
-                                const pnlPercent = (pnl / investmentAmount * 100).toFixed(1);
-                                return `${context.dataset.label}: $${value.toLocaleString()} (${pnlPercent > 0 ? '+' : ''}${pnlPercent}%)`;
+                                const initialInvestment = performanceHistory.initial_investment;
+                                const pnl = value - initialInvestment;
+                                const pnlPercent = (pnl / initialInvestment * 100).toFixed(1);
+                                return `${context.dataset.label}: ₪${value.toLocaleString('he-IL', {maximumFractionDigits: 0})} (${pnlPercent > 0 ? '+' : ''}${pnlPercent}%)`;
                             }
                         }
                     }
@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ticks: {
                             color: '#a1a1aa',
                             callback: function(value) {
-                                return '$' + value.toLocaleString();
+                                return '₪' + value.toLocaleString('he-IL', {maximumFractionDigits: 0});
                             }
                         }
                     }
@@ -642,10 +642,43 @@ style.textContent = `
         background: var(--surface-elevated);
         padding: 2rem;
         border-radius: var(--border-radius-lg);
+        margin: 2rem 0;
         box-shadow: var(--shadow-lg);
         border: 1px solid var(--border-color);
-        margin: 2rem 0;
     }
+
+    #performance-chart-container h3 {
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .performance-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .performance-stats .stat {
+        text-align: center;
+    }
+
+    .performance-stats .stat h4 {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .performance-stats .stat span {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
     
     #performance-chart-container h3 {
         color: var(--text-primary);

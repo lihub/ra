@@ -202,6 +202,7 @@ async def calculate_portfolio(
                 "time_ms": round(result.optimization_time_ms, 1),
                 "risk_category": result.risk_category
             },
+            "performance_history": result.performance_history,
             "kyc_inconsistencies": [
                 {
                     "type": inc.type.value,
