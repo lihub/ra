@@ -302,31 +302,33 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!perfChartContainer) {
             perfChartContainer = document.createElement('div');
             perfChartContainer.id = 'performance-chart-container';
-            perfChartContainer.innerHTML = `
-                <h3>Portfolio Performance Over Time</h3>
-                <div style="position: relative; height: 400px; margin: 2rem 0;">
-                    <canvas id="performanceChart"></canvas>
-                </div>
-                <div class="performance-stats">
-                    <div class="stat">
-                        <h4>Total Return</h4>
-                        <span id="total-return">${performanceHistory.total_return_pct.toFixed(1)}%</span>
-                    </div>
-                    <div class="stat">
-                        <h4>Period</h4>
-                        <span id="period">${performanceHistory.years.toFixed(1)} years</span>
-                    </div>
-                    <div class="stat">
-                        <h4>Final Value</h4>
-                        <span id="final-value">₪${performanceHistory.final_value.toLocaleString('he-IL', {maximumFractionDigits: 0})}</span>
-                    </div>
-                </div>
-            `;
-            
+
             // Insert after portfolio chart
             const portfolioChartDiv = document.querySelector('.portfolio-chart');
             portfolioChartDiv.parentNode.insertBefore(perfChartContainer, portfolioChartDiv.nextSibling);
         }
+
+        // Always update the content (for when user changes answers)
+        perfChartContainer.innerHTML = `
+            <h3>Portfolio Performance Over Time</h3>
+            <div style="position: relative; height: 400px; margin: 2rem 0;">
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="performance-stats">
+                <div class="stat">
+                    <h4>Total Return</h4>
+                    <span id="total-return">${performanceHistory.total_return_pct.toFixed(1)}%</span>
+                </div>
+                <div class="stat">
+                    <h4>Period</h4>
+                    <span id="period">${performanceHistory.years.toFixed(1)} years</span>
+                </div>
+                <div class="stat">
+                    <h4>Final Value</h4>
+                    <span id="final-value">₪${performanceHistory.final_value.toLocaleString('he-IL', {maximumFractionDigits: 0})}</span>
+                </div>
+            </div>
+        `;
         
         const ctx = document.getElementById('performanceChart').getContext('2d');
         
@@ -347,6 +349,9 @@ document.addEventListener('DOMContentLoaded', function() {
             y: performanceHistory.initial_investment
         }));
         
+        // Store initial investment for tooltip callback
+        const initialInvestment = performanceHistory.initial_investment;
+
         window.performanceChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -392,7 +397,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         callbacks: {
                             label: function(context) {
                                 const value = context.parsed.y;
-                                const initialInvestment = performanceHistory.initial_investment;
                                 const pnl = value - initialInvestment;
                                 const pnlPercent = (pnl / initialInvestment * 100).toFixed(1);
                                 return `${context.dataset.label}: ₪${value.toLocaleString('he-IL', {maximumFractionDigits: 0})} (${pnlPercent > 0 ? '+' : ''}${pnlPercent}%)`;
