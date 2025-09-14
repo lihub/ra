@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // }
 
         // Create portfolio details table
-        createPortfolioDetails(data.portfolio_allocation, data.investment_details.amount_ils);
+        createPortfolioDetails(data.portfolio_allocation);
 
         // NEW: Display KYC profile information
         displayKYCProfile(data.risk_assessment);
@@ -425,25 +425,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function createPortfolioDetails(portfolio, investmentAmount) {
+    function createPortfolioDetails(portfolioAllocation) {
         const detailsContainer = document.getElementById('portfolio-details');
-        
-        let html = '<h3>Portfolio Allocation Details</h3><div class="allocation-table">';
-        
-        for (const [asset, allocation] of Object.entries(portfolio)) {
-            const percentage = (allocation * 100).toFixed(1);
-            const amount = (allocation * investmentAmount).toFixed(0);
-            
+
+        // Helper function to format asset names
+        function formatAssetName(assetName) {
+            return assetName
+                .replace(/_/g, ' ')
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/\b\w/g, l => l.toUpperCase())
+                .trim();
+        }
+
+        let html = '<h3>Portfolio Allocation Details</h3>';
+
+        // Add table header
+        html += `<div class="allocation-table">
+            <div class="allocation-row header-row">
+                <div class="asset-name">Asset</div>
+                <div class="asset-percentage">Allocation</div>
+                <div class="asset-amount">Amount (₪)</div>
+            </div>`;
+
+        // Add asset rows
+        for (const [asset, percentage] of Object.entries(portfolioAllocation.percentages)) {
+            const percentageDisplay = (percentage * 100).toFixed(1);
+            const amount = portfolioAllocation.amounts_ils[asset];
+
             html += `
                 <div class="allocation-row">
-                    <div class="asset-name">${asset.replace(/_/g, ' ')}</div>
-                    <div class="asset-percentage">${percentage}%</div>
-                    <div class="asset-amount">$${Number(amount).toLocaleString()}</div>
+                    <div class="asset-name">${formatAssetName(asset)}</div>
+                    <div class="asset-percentage">${percentageDisplay}%</div>
+                    <div class="asset-amount">₪${Number(amount).toLocaleString('he-IL', {maximumFractionDigits: 0})}</div>
                 </div>
             `;
         }
-        
+
         html += '</div>';
+
+        // Add total row
+        html += `<div class="total-row">
+            <div class="total-label">Total Investment:</div>
+            <div class="total-amount">₪${Number(portfolioAllocation.total_invested).toLocaleString('he-IL', {maximumFractionDigits: 0})}</div>
+        </div>`;
+
         detailsContainer.innerHTML = html;
     }
 });
@@ -557,6 +582,20 @@ style.textContent = `
         border-bottom: 1px solid var(--border-color);
         background: var(--surface-color);
     }
+
+    .header-row {
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+    }
+
+    .header-row .asset-name,
+    .header-row .asset-percentage,
+    .header-row .asset-amount {
+        color: white;
+    }
     
     .allocation-row:nth-child(even) {
         background: var(--surface-elevated);
@@ -581,6 +620,22 @@ style.textContent = `
         text-align: right;
         font-weight: 500;
         color: var(--text-primary);
+    }
+
+    .total-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        padding: 1rem;
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        margin-top: 1rem;
+        border-radius: var(--border-radius);
+    }
+
+    .total-amount {
+        text-align: right;
+        font-size: 1.1rem;
     }
     
     #performance-chart-container {
